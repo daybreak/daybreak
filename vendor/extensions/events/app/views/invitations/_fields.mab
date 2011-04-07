@@ -1,0 +1,8 @@
+p.instructions! do
+  text f.fld :sender_name, :label => 'Your Name', :required => true, :onkeyup => 'verifyInput()'
+  text f.fld :sender_email, :label => 'Your Email', :required => true, :onkeyup => 'verifyInput()'
+  text f.fld :personalized_message, :label => 'Message', :type => :textarea, :required => true, :value => @event.invitation, :rows => 3, :onkeyup => 'verifyInput();postMessage()'
+  text f.fld :recipient_email, :label => 'Recipient(s)', :type => :textarea, :required => true, :onkeyup => 'verifyInput()', :hint => 'Separate multiple recipient email addresses with semicolons (;).'
+  text f.controls :deliver
+end
+

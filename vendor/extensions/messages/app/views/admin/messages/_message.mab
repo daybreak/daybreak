@@ -1,0 +1,9 @@
+tr :class => "node level-0#{@message.happened? ? ' happened' : ''}#{@message.series ? '' : ' independent'}" do
+  td.page do
+    span.w1 do
+      text link_to(image_tag('/images/admin/message.png', :align => 'center', :width => '32px', :alt => '*', :class => 'icon') + " <span class='title'>#{@message.title}</span>", :action => 'edit', :id => @message)
+		  p {"by #{@message.delivered_by || 'anonymous'}"}
+    end
+  end
+  td.date {@message.delivered_on.formatted}
+end

@@ -1,0 +1,14 @@
+text f.fld :first_name
+text f.fld :last_name
+text f.fld :address, :type => :textarea
+text f.fld :city
+text f.fld :state
+text f.fld :zip
+text f.fld :born_on, :label => 'Birth Date', :type => :date, :year_start => Date.today.year - (110 + 1), :year_range => 110
+text f.fld :gender, :type => :dropdown, :required => true, :choices => {'Male' => 'M', 'Female' => 'F'}
+text f.fld :photo, :type => :imagebox
+fieldset.contact_options_fs! do
+  legend 'Contact Options'
+  render :partial => 'contact_options', :locals => { :person => @person }
+end
+

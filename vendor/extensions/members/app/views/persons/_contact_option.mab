@@ -1,0 +1,14 @@
+row_id = "contact_option_#{index}"
+button_id = "contact_option_#{index}_button"
+tr(:id => "contact_option_#{index}") do
+  fields_for "contact_option[#{index}]", contact_option do |f|
+    td.contact_type do
+      text f.hidden_field :id
+      text f.collection_select :contact_type_id, @contact_types, :id, :name, :include_blank => !contact_option.id
+    end
+    td.contact_info { f.text_field :contact_info }
+    td.boolean { radio_button @person.class.to_s.downcase, :primary_contact_option_id, contact_option.id if contact_option.id }
+    td { link_to_remote(image_tag("/images/admin/remove.png", :id => button_id, :alt => "remove"), :url => {:controller => "/admin/contact_options", :action => "destroy", :id => contact_option.id}, :loading => "$('#{button_id}').hide();", :failure => "$('#{button_id}').show();", :success => visual_effect(:fade, row_id) ) if contact_option.id }
+  end
+end
+

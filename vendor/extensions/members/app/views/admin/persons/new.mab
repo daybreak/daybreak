@@ -1,0 +1,2 @@
+render :partial => 'form', :locals => {:actions => ['Create', link_to('Cancel', :action => :index)] }
+

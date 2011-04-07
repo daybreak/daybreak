@@ -1,0 +1,17 @@
+<%= markaby do
+	actions.reject! do |action|
+		action == :index and !current_user.directory_access?
+	end
+	actions.map! do |action|
+		if action == :index
+			link_to('Directory', :action => :index)
+		else
+			action
+		end
+	end
+	h1 'Person'
+end %>
+<% enstyle_form_for :person, :actions => actions, :multipart => true do |f| %>
+<%= render :partial => 'fields', :locals => {:f => f} %>
+<% end %>
+

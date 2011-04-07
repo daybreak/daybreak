@@ -1,0 +1,6 @@
+render :partial => 'form',
+       :locals  => {:actions => [:create, :index]}
+       
+script %{
+  $$('body')[0].addClassName('reversed');
+}

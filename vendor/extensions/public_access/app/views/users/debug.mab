@@ -1,0 +1,9 @@
+require 'pp'
+h1 "Session Info"
+pre do
+  text h(PP.pp(session, String.new))
+end
+h1 "Current User"
+pre do
+  text h(PP.pp(current_user, String.new))
+end

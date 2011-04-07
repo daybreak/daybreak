@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   width="300"
+   height="280"
+   version="1.0"
+   sodipodi:docbase="/var/www/daybreak/public/design"
+   sodipodi:docname="series-photo.svg"
+   inkscape:export-filename="/home/mlanza/Desktop/series-photo.png"
+   inkscape:export-xdpi="67.5"
+   inkscape:export-ydpi="67.5"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5">
+    <filter
+       inkscape:collect="always"
+       id="filter3151">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="3.9324324"
+         id="feGaussianBlur3153" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     inkscape:window-height="949"
+     inkscape:window-width="1280"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     inkscape:zoom="2.035"
+     inkscape:cx="125"
+     inkscape:cy="128.04949"
+     inkscape:window-x="0"
+     inkscape:window-y="49"
+     inkscape:current-layer="layer1"
+     width="300px"
+     height="280px" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="frame"
+     style="display:inline" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="photo"
+     style="display:inline">
+    <g
+       id="g2167">
+      <rect
+         inkscape:export-ydpi="70.730003"
+         inkscape:export-xdpi="70.730003"
+         inkscape:export-filename="/home/mlanza/Desktop/series-photo.png"
+         transform="matrix(0.9993165,3.6965999e-2,-3.6965999e-2,0.9993165,24.660437,12.976399)"
+         style="fill:#4d4d4d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;display:inline;filter:url(#filter3151)"
+         id="rect2163"
+         width="269.28748"
+         height="255.03685"
+         x="-0.8452034"
+         y="-3.7690392"
+         rx="1"
+         ry="1" />
+      <rect
+         inkscape:export-ydpi="70.730003"
+         inkscape:export-xdpi="70.730003"
+         inkscape:export-filename="/home/mlanza/Desktop/series-photo.png"
+         transform="matrix(0.9993165,3.6966004e-2,-3.6966004e-2,0.9993165,0,0)"
+         ry="1"
+         rx="1"
+         y="0.28689381"
+         x="16.278063"
+         height="255.03685"
+         width="269.28748"
+         id="rect2161"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#2f2323;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.75543482;display:inline" />
+      <image
+         inkscape:export-ydpi="70.730003"
+         inkscape:export-xdpi="70.730003"
+         inkscape:export-filename="/home/mlanza/Desktop/series-photo.png"
+         transform="matrix(0.9993165,3.6966003e-2,-3.6966003e-2,0.9993165,0,0)"
+         y="12.055932"
+         x="25.123268"
+         id="image9"
+         height="200"
+         width="250"
+         sodipodi:absref="/home/mlanza/Desktop/babyblue/ChartingANewCourse-sm.jpg"
+         xlink:href="photo.jpg" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="box"
+     style="display:none">
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.19840844;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2166"
+       width="249.80167"
+       height="199.80159"
+       x="25.161251"
+       y="12.605422"
+       rx="0.99480706"
+       ry="0.98928559"
+       transform="matrix(0.9993867,3.5018365e-2,-3.5018365e-2,0.9993867,0,0)" />
+  </g>
+</svg>

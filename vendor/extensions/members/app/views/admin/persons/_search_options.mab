@@ -1,0 +1,22 @@
+include_stylesheet 'search_options'
+style do %[
+	small.footnote {display: block; float: left; clear: both; margin: -.7em 0 1em;}
+	div.name_start_letter div {width: 1em;}
+]
+end
+div.search_options do
+  form(:action => url_for(:action => :index), :method => :post, :class => 'search') do
+    authenticity_token
+    
+    div.field do
+      label "Please enter at least 3 letters of the first or last name:"
+      text_field_tag 'name_start', params[:name_start], :size => 12, :class => 'name'
+      submit_tag 'Find'
+    end
+    toggles :off => 'More search options', :on => 'Fewer search options' do
+      render :partial => '/admin/persons/additional_search_options'
+    end
+    small.footnote "Search by month born or membership status, for example"
+  end
+end
+

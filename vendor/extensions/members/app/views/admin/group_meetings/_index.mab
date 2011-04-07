@@ -1,0 +1,18 @@
+h2 "Meetings"
+table.index do
+  tr {th "Topic"; th "Date"; th.count "Attendees"; th.count "Guests"; th.modify "Modify"}
+  for group_meeting in @group_meetings
+    row_id = "group_meeting_#{group_meeting.id}"
+    tr(:id => row_id) do
+      td {link_to(h(group_meeting.topic), :controller => 'admin/group_meetings', :action => 'edit', :id => group_meeting)}
+      td.date {group_meeting.date.strftime("%m/%d/%Y")}
+      td.count {group_meeting.head_count}
+      td.count {group_meeting.guests}
+      td.modify {link_to_remote(image_tag("/images/admin/remove.png", :alt => "Remove") , :url => { :controller => 'admin/group_meetings', :action => 'destroy', :id => group_meeting }, :confirm => 'Are you sure?', :complete => visual_effect(:fade, row_id))}
+    end
+  end
+end
+div.options do
+  text link_to('Add Meeting', {:controller => 'group_meetings', :action => 'new', :group_id => @group.id}, :class => 'image-button')
+end
+

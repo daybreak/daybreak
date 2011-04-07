@@ -1,0 +1,30 @@
+style %{
+  section {float: left; clear: both; margin-bottom: 1em;}
+  .continue {display: block;}
+}
+h1 @content_for_title
+if @recurrences.any?
+	for @recurrence in @recurrences
+		section do
+		  h2 @recurrence.name
+		  p do
+			  text @recurrence.description
+			  text link_to("Learn More", {:action => 'about', :id => @recurrence, :slug => @recurrence.recurrence_category.slug}, {:class => "continue"})
+      end
+			if @recurrence.find_upcoming_events.any?
+				for @event in @recurrence.find_upcoming_events
+		      text calbox(@event)
+		    end
+			else
+		    em "This #{@recurrence.recurrence_category.name.downcase} currently has no scheduled events."
+			end
+		end
+	end
+else
+  p do
+   text "None of our "
+   text @content_for_title.downcase.pluralize
+   text " are scheduled at this time."
+  end
+end
+

@@ -1,0 +1,1 @@
+../../vendor/extensions/events/public/javascripts/invitations.js

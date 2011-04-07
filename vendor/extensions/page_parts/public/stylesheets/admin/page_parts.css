@@ -1,0 +1,28 @@
+ul#filters {
+  list-style: none;
+}
+ul#filters li {
+  display: inline-block;
+  background-color: #DDD;
+  padding: .2em .3em;
+  margin: .2em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+
+}
+td.page {
+  width: 400px;
+}
+td.page_part {
+  width: 90px;
+}
+td.filter {
+  width: 90px;
+}
+small.url{
+  font-weight: normal;
+  color: dimgray;
+  margin-left: 25px;
+}
+

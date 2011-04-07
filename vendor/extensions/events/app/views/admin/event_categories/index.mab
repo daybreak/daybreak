@@ -1,0 +1,6 @@
+include_stylesheet 'admin/event'
+h1 "Event Categories"
+p "Each category represents a separate calendar for a given audience."
+index_table ["Name"], event_categories, [:name, :description]
+actions{|a,t| a.add new_record('Event Category')}
+

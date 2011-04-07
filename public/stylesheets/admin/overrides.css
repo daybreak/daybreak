@@ -1,0 +1,65 @@
+/* Make your custom overrides here. This file will not be updated by Radiant */
+
+body.reversed #content form .page .hint {
+	float: right;
+	color: dimgray;
+	font-style: italic;
+	display: block;
+	width: 100%;
+	font-size: .9em;
+}
+input.date {
+  width: 6em;
+}
+.form_area textarea {
+  width: 99.6%;
+  padding: .2em !important;
+  clear: both;
+  float: left;
+  height: 5em;
+  margin: .3em 0 .5em;
+}
+div.field input, div.field textarea, div.field select, div.field div.image-box {
+  float: left;
+  clear: both;
+  margin-bottom: .4em;
+}
+div.date.field img {
+  float: left;
+  margin: 7px 0 0 3px;
+}
+div.date.field input {
+  width: 7em;
+}
+#tab_control .pages table.index td.page {
+  background-image: none;
+  -moz-box-shadow: none;
+  background-color: white;
+}
+#tab_control table.index {
+  background-color: white;
+  -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+}
+#tab_control .tabs .tab.here, #tab_control .pages div.page {
+  background-image: none;
+  background-color: #F5F1E2;
+}
+#tab_control .pages div.page {
+  -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+form .page table.fieldset {
+  width: 100%;
+}
+form .page table.fieldset th {
+  width: 12em;
+  text-align: right;
+}
+
+.form_area > div.field > label {
+  float: left;
+  clear: both;
+}
+#layout_content, #snippet_content {
+height: 22em;
+
+}

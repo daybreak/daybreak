@@ -1,0 +1,31 @@
+include_stylesheet 'event'
+h1 "Recurrence"
+text error_messages_for 'recurrence'
+form(:action => url_for(:action => actions.first, :id => @recurrence.id), :method => :post, :enctype => "multipart/form-data") do
+  authenticity_token
+  div.form_area do
+    entitled :recurrence, :name, :maxlength => 50 #TODO: determine maxlength dynamically?
+    tab_control do
+      tab_page 'details' do
+        field :recurrence, :description, :type => :textarea, :hint => "Describe without mentioning specific dates.  The actual events for this recurrence will note the dates."
+        field :recurrence, :recurrence_category_id, :label => 'Category' do
+          collection_select :recurrence, :recurrence_category_id, RecurrenceCategory.find(:all), :id, :name, :include_blank => false
+        end
+				field :recurrence, :minimum_age, :size => 2, :hint => "Leave blank if there is no age requirement."
+        field :recurrence, :sort_order, :size => 2, :hint => "Leave gaps to make reordering easier"
+        field :recurrence, :require_authentication, :label => 'Login Required?', :type => :checkbox, :hint => "Check if registrants must first login to the site?"
+        field :recurrence, :discontinued, :type => :checkbox, :label => 'Discontinued?', :hint => "Discontinued recurrences will be excluded from our catalog."
+      end
+      tab_page 'pre-registration' do
+        field :recurrence, :pre_registration_message, :type => :textarea, :hint => "Information displayed to a person considering registering."
+      end
+      tab_page 'post-registration' do
+        field :recurrence, :confirmation_message, :type => :textarea, :hint => "Information or reminders displayed after a person has registered."
+      end
+    end
+		br
+    updated_stamp @recurrence
+  end
+  controls :recurrence, actions
+end
+

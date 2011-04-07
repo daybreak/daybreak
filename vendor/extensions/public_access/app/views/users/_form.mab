@@ -1,0 +1,18 @@
+actions << link_to('Change Password', :action => :change_password) unless @user.new_record?
+actions << link_to("Create Person Record", :controller => "family/persons", :action => "new") unless @user.new_record? or @user.person
+
+h1 @content_for_title
+form(:action => url_for(:action => actions.first), :method => :post) do
+  authenticity_token
+  field :user, :name , :required => true, :label => 'Full Name', :hint => 'e.g. "John Q. Public"'
+  field :user, :login, :required => true, :label => 'User Name', :hint => 'You may use your email address, your full name, or your favorite online nickname'
+  field :user, :email, :required => true
+  if params[:action] == 'register'
+    render :partial => 'password'
+  else
+    field :user, :person_record, :content => (@user.person ? link_to(@user.person.full_name, :controller => 'family/persons', :action => 'show', :id => @user.person) : 'None')
+    field :user, :status, :type => :display, :format => :humanize
+  end
+  controls :user, actions
+end
+

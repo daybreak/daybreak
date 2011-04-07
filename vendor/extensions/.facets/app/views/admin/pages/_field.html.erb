@@ -1,0 +1,12 @@
+<!-- Followed the Radiant standard of using 'p' for label/field pairings -->
+<p class='<%= field.descriptors.join(' ') %>'>
+<%= field.label_tag -%>
+<%= field.input_tag(@page, params) %>
+<% if field.description %>
+  <div class='description'><%= field.description %></div>
+<% end %>
+<% if error = field.error(@page) %>
+  <div class='error'><%= error %></div>
+<% end %>
+</p>
+

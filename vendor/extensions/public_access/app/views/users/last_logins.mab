@@ -1,0 +1,15 @@
+#TODO: not complete or working
+div.overview do
+  h2 "Users"
+  b "Latest Logins"
+  ul do
+    for user in @users
+      li do
+        text wrap_if(link_to(user.login, :controller => 'users', :action => 'edit', :id => user), 'strong', current_user.id == user.id)
+        br
+        text user.updated_at
+      end
+    end
+  end
+end
+

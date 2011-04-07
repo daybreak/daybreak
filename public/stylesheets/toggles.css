@@ -1,0 +1,30 @@
+.togglearea {
+  margin: .8em 0;
+}
+.togglearea .toggler > a {
+  color: blue;
+  text-decoration: underline;
+}
+.toggles  {
+  margin-top: 1em;
+}
+.togglearea .toggler > a {
+  cursor: pointer;
+  display: block;
+}
+.togglearea.on  .toggler > a.off,
+.togglearea.off .toggler > a.on,
+.togglearea.off .toggles {
+  display: none;
+}
+/*
+.togglearea.on .toggler > a.on {
+  text-decoration: none;
+  color: black !important;
+}
+*/
+.togglearea a.on, .togglearea a.off {
+  font-size: small !important;
+  font-weight: normal;
+}
+

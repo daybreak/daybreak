@@ -1,0 +1,30 @@
+html body #main #content h1#page_path {
+  float: left;
+  clear: left;
+  width: auto;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #5a564a;
+  background-color: transparent;
+  padding: 0;
+  margin: -2px 0 1em 10px;
+}
+html body #main #content h1#page_path #label {
+  float: left;
+  margin-right: 3px;
+  color: #5a564a; 
+}
+html body #main #content h1#page_path #root_path {
+  float: left; 
+}
+html body #main #content h1#page_path #path_slug {
+  float: left;
+  height: 15px;
+  margin-top: -1px;
+  margin-left: 2px;
+  padding: 0px 1px;
+  color: white;
+}
+html body #main #content h1#page_path a {
+  color: #625F57; 
+}

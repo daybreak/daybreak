@@ -1,0 +1,72 @@
+style %{
+  table.fieldset {
+    float: left; clear: both;
+  }
+}
+div.page! do
+  authenticity_token
+  div.form_area do
+    p.title do
+      span do
+        label(:for=>"person_first_name") {"First Name"}
+        text_field :person, :first_name, :class => 'textbox', :maxlength => 20
+      end
+      span do
+        label(:for=>"person_last_name") {"Last Name"}
+        text_field :person, :last_name, :class => 'textbox', :maxlength => 20
+      end
+      span do
+        label(:for=>"person_active") {"Active"}
+        check_box :person, :active
+      end
+    end
+
+    tab_control do
+      tab_page :details do
+        meta_table do
+          meta_row :person, :address, :type => :textarea
+          meta_row :person, :city do
+            inner_field :person, :state, :size => 2
+            inner_field :person, :zip, :size => 5
+          end
+          meta_row :person, :person_type_id, :label => 'Member Status', :type => :dropdown, :choices => PersonType.find(:all).collect {|t| [ t.name, t.id ] }
+          meta_row :person, :born_on, :label => 'Birth Date', :type => :date, :year_start => Date.today.year - (110 + 1), :year_range => 110
+          meta_row :person, :gender, :type => :dropdown, :required => true, :choices => {'Male' => 'M', 'Female' => 'F'}
+          meta_row :person, :photo, :type => :imagebox
+          meta_row :person, :privacy_level, :type => :dropdown, :required => true, :choices => to_dropdown_list(Person::PRIVACY_LEVELS)
+          meta_row :person, :external_id, :label => 'External ID', :hint => 'Link to PeopleSoft record (if any)'
+          if person.user
+            user = person.user
+            meta_row('Login') do
+              text link_to(user.login, :controller => :users, :action => :edit, :id => user.id)
+            end
+          end
+        end
+      end
+
+      tab_page :contact_options do
+        render :partial => 'contact_options', :locals => { :person => person }
+      end
+
+      tab_page :relationships do
+        fieldset.groups_fieldset! do
+          legend 'Groups'
+          text person.groups.collect{|g| link_to g.name, :controller => 'admin/groups', :action => 'edit', :id => g.id }.join(", ")
+        end
+        fieldset.add_remove.positions_fieldset! do
+          legend 'Positions'
+          render :partial => 'positions', :locals => { :person => person }
+        end
+        fieldset.supervisors_fieldset! do
+          legend "Supervisors"
+          render :partial => 'supervisors', :locals => { :person => person }
+        end
+
+      end
+    end
+      br
+      updated_stamp person
+
+  end
+end
+

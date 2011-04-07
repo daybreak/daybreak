@@ -1,0 +1,31 @@
+h1 do
+  text "Messages"
+  text @series ? " for &ldquo;#{@series.title}&rdquo;" : ""
+end
+p "Messages grouped by series."
+table.index do
+  thead do
+    tr do
+      th.title {"Title"}
+      th.date {"Delivered"}
+    end
+  end
+  tbody do
+    render :partial => 'series', :collection => @empty_series
+    @last_series = nil
+    for @message in @messages
+      #TODO: create a block that notes when a break (change) occurs
+      @this_series = @message.series
+      change_in_series = @this_series != @last_series
+      @last_series = @this_series
+      render :partial => 'series', :locals => { :series => @this_series } if change_in_series
+      render :partial => 'message', :locals => { :message => @message }
+    end
+  end
+end
+actions do |a,t|
+  a.add new_record('Series', :controller => '/admin/series' )
+  a.add new_record('Message')
+  a.add render(:partial => 'search_form')
+end
+

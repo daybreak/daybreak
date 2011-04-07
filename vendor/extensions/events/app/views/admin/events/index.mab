@@ -1,0 +1,8 @@
+render(:partial => (params[:view] || 'list').downcase)
+actions do |a,t|
+  a.add new_record('Event')
+  a.add render(:partial => 'search_form')
+  t.add 'Today', :view => 'list', :from => Date.today.to_s, :thru => Date.today.to_s
+  t.add 'Week', :view => 'list', :from => Date.today.to_s, :thru => (Date.today + 6).to_s
+  t.add 'Pending', :view => 'list', :status => 'pending'
+end

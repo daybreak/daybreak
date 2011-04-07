@@ -1,0 +1,31 @@
+attached = params[:attached] == "true" and current_user and @person == current_user.person
+if attached
+  p do
+    text "We have associated this person record with your user account.  If this is not your information we can #{link_to('undo the association', :controller => 'persons', :action => :not_me) }.  "
+    em "(Click link only if this is <strong>not</strong> you!)"
+  end
+end
+h1 {@person.full_name + ", " + @person.person_type.name.capitalize }
+show_photo(@person, :small)
+p "Born on #{@person.born_on.strftime('%B %d')}" rescue nil
+fieldset.tight do
+  legend "Address"
+  text link_to_map(@person.full_address(false).join("<br/>"), @person.address, @person.city, @person.state, @person.zip)
+end
+fieldset.tight do
+  legend "Contact"
+  text @person.contact_info.join("<br/>")
+end
+if @person.groups.any?
+  fieldset.tight do
+    legend "Small Group"
+    text @person.groups.collect {|group| link_to(group.name, :controller => 'groups', :action => :show, :id => group.id) }.join(", ")
+  end
+end
+
+ul.options do
+  li{link_to("Email #{@person.first_name}", "mailto:#{@person.email}")} if @person.email
+  li{link_to("Directory", :action => :index )}
+  li{link_to("Edit Record"  , :action => :edit )} if @person == current_user.person
+end
+

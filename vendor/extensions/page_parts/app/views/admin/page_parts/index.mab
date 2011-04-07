@@ -1,0 +1,45 @@
+h1 ((params[:name] || '').to_s.titleize + " Parts").strip
+
+include_stylesheet 'admin/page_parts' #TODO: could this be loaded automatically by name?
+
+ul.filters! do
+  @filters.each do |filter, name, count|
+    li do
+      text link_to_unless_current(name, filter.to_sym => name)
+      text ' '
+      text count.to_s
+    end
+  end
+end
+
+
+table.index(:id => 'site-map', :summary => 'Page parts') do
+  thead do
+    tr do
+      th.page      "Page"
+      th.page_part "Part"
+      th.filter    "Filter"
+      th.content   "Content"
+    end
+  end
+  tbody do
+    @page_parts.each do |page_part|
+      page = page_part.page
+      tr(:class => 'level-0 children-visible node') do
+        td.page do
+          a(:href=> "/admin/pages/#{page.id}/edit", :title => page.url) do
+            img(:alt=>'page-icon', :class=> 'icon', :src => "/images/admin/page.png", :title => "")
+            text ' '
+            span.title {page.title}
+          end
+          br
+          small.url{page.url}
+        end
+        td.page_part page_part.name
+        td.filter    page_part.filter.class.to_s.underscore.gsub("filter","").humanize
+        td.content   page_part.content.to_s[0..100] + (page_part.content.to_s.length > 100 ? '...' : '')
+      end
+    end
+  end
+end
+

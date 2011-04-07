@@ -1,0 +1,13 @@
+include_stylesheet "admin/events"
+h1 "About #{@recurrence.name}"
+div{@recurrence.pre_registration_message}
+if @recurrence.find_upcoming_events.empty?
+	em "This #{@recurrence.recurrence_category.name.downcase} currently has no scheduled events."
+end
+for @event in @recurrence.find_upcoming_events
+	calbox @event
+end
+hr.clear
+p do 
+	text link_to("Browse #{@recurrence.recurrence_category.name.pluralize}", :action => :index, :slug => @recurrence.recurrence_category.slug)
+end

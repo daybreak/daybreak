@@ -1,0 +1,9 @@
+radiant_configuration: 'Radiant Configuratie'
+
+# Default configuration
+admin: 'Beheerscherm'
+subtitle: 'Subtitel'
+title: 'Titel'
+defaults: 'Standaardinstellingen'
+page_parts: 'Paginadelen'
+page_status: 'Pagina Status'

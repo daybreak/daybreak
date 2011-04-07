@@ -1,0 +1,124 @@
+h1 "Event"
+event = @event; relations = @relations || []
+form(:action => url_for(:action => actions.first, :id => event), :method => :post, :enctype => "multipart/form-data") do
+  authenticity_token
+  div.form_area do
+    entitled :event, :title
+    p.calendar do
+      label(:for=>"event_category_id") {"Calendar"}
+      dropdown :event, :event_category_id, EventCategory.find(:all).collect {|e| [ e.name, e.id ] }, {:include_blank => false}
+    end    
+    tab_control do
+      tab_page :event do
+        meta_table do
+          meta_row :event, :start_at, :required => true, :type => :date, :year_start => Date.today.year, :year_range => 2, :time => true
+          meta_row :event, :end_at, :required => true, :type => :date, :year_start => Date.today.year, :year_range => 2, :time => true
+          meta_row :event, :body, :type => :textarea, :label => 'Description'
+          meta_row :event, :image,    :type => :imagebox #TODO: fix --> :hint => "This image must be in the Polaroid format."
+          meta_row :event, :setup_minutes, :after => 'mins.', :label => 'Set up', :size => 2, :hint => 'How many minutes are required before the start time to set up?'
+          meta_row :event, :teardown_minutes, :after => 'mins.', :label => 'Tear down', :size => 2, :hint => 'How many minutes are required after the end time to tear down?'
+          meta_row :event, :expected_attendance, :required => event.requested? || event.pending?
+          meta_row :event, :event_status, :label => 'Status', :type => :dropdown, :choices => Event::STATUSES, :include_blank => false, :hint => 'Only confirmed events are visible', :after => (event.access_key ? " <small>requested by <a href='mailto:#{event.contact_email}'>#{event.contact_name}</a></small>" : "")
+          meta_row :event, :comments, :type => :textarea, :hint => (event.requested? ? "These comments will be emailed to the requester whenever the status is updated." : "")
+          meta_row :event, :starred,  :label => 'Starred?', :type => :checkbox
+          meta_row :event, :register, :label => 'Accept registrations?', :type => :checkbox
+        end
+      end
+
+      tab_page :location do
+        meta_table do
+          meta_row :event, :location,      :label => 'Location Description', :hint => "Human-readable location of event: specific (a full mailing address) or general (e.g. Joel's home)"
+          meta_row :event, :location_url,  :label => 'Location URL', :hint => 'This should be a URL provided by MapQuest (e.g. http://mapquest.com/...) or Google Maps (e.g. http://maps.google.com/...).'
+        end
+      end
+
+      tab_page :supervisors do
+        meta_table do
+          meta_row :event, :leader_name
+          meta_row :event, :contact_name, :required => event.requested? || event.pending?
+          meta_row :event, :contact_email, :label => 'Email', :required => event.requested? || event.pending?
+          meta_row :event, :contact_phone, :label => 'Phone', :required => event.requested? || event.pending?
+          meta_row :event, :contact_full_address, :label => 'Address', :type => :textarea, :required => event.requested? || event.pending?
+        end
+      end
+
+      tab_page :resources do
+        meta_table do
+          categorized_resources.each_pair do |resource_category, resources|
+            meta_row(resource_category.titleize) do
+              ul do
+                resources.each do |resource|
+                  li do
+                    check_box_tag("event[resource_ids][]", resource.id, event.resources.include?(resource), :id => "event_resource_id_#{resource.id}")
+                    label(:for => "event_resource_id_#{resource.id}"){resource.name.titleize}
+                  end #li
+                end #resources
+              end #ul
+            end #meta_row
+          end #categorized_resources
+        end #meta_table
+      end #tab_page
+
+      tab_page :invitation do
+        meta_table do
+          meta_row :event, :invitation, :label => 'Message', :type => :textarea
+          meta_row :event, :invitation_image, :type => :imagebox, :label => 'Image'
+          meta_row :event, :invitation_color, :label => 'Color', :class => 'color-entry', :onkeyup => "applyColor()", :hint => "(Use HTML colors: e.g. #DDD, navajowhite, red, blue, purple, etc.)", :before => capture{div.color_sample! {"sample"}}
+          meta_row('Actions'){link_to("View Invitation", :controller => "/invitations", :action => :invite, :id => event.id) } unless event.invitation.blank?
+        end
+      end
+
+      tab_page :registrations do
+        meta_table do
+          meta_row :event, :recurrence_id, :label => 'Recurrence', :content => (collection_select(:event, :recurrence_id, recurrences, :id, :name, :include_blank => true) if recurrences)
+          meta_row :event, :alternate_name,:label => 'Public Title', :hint => 'This title appears in the calendar block on the public site.'
+          meta_row :event, :registration_start_at, :type => :date, :label => 'Start date'
+          meta_row :event, :registration_end_at, :type => :date, :label => 'Cutoff date'
+          meta_row :event, :capacity, :maxlength => 5, :size => 4, :hint => "Leave blank if the capacity is unlimited."
+          meta_row :event, :confidential_attendance, :type => :checkbox, :label => 'Confidential Attendance?', :hint => 'Are the registrant names hidden from the public?'
+        end
+      end
+
+      tab_page :registrants do
+        unless event.new_record?
+          #toggles :toggler_tag => :h2, :off => "Registrations", :on => "Registrations", :show => false do
+          component :controller => 'admin/registrations', :action => 'index', :params => {:page_id => event.id, :suppress_title => true}
+          #end
+        end
+      end unless event.new_record?
+
+      tab_page :appears_on do
+        p "This event should appear on these checked pages:"
+        ul(:style=>'list-style: none') do
+          relations.each do |page, checked|
+            li do
+              text check_box_tag("event[appear_on_ids][]", page.id, checked, :id => "event_appear_on_id_#{page.id}")
+              text ' '
+              page.ancestors.reverse.each do |ancestor|
+                text ancestor.title
+                text " > "
+              end
+              text link_to_if(checked, page.title, page.url, :title => page.url)
+            end
+          end
+        end
+      end unless relations.empty?
+
+    end
+    updated_stamp event
+  end #form_area
+
+  div.repeats! do
+    REPEATS = ['Weekdays', 'Daily', 'Weekly', 'Monthly']
+    ORDINAL = [['First','1'], ['Second','2'], ['Third','3'], ['Forth','4'], ['Last','5']]
+    div.repeat_repeats! {"Repeats "}
+    dropdown nil, 'repeat_mode', REPEATS, {:selected => (params['repeat']['mode'] rescue nil), :include_blank => true},{:id=>'repeat_mode', :name=>'repeat[mode]'}
+    dropdown nil, 'repeat_ordinal', ORDINAL, {:selected => (params['repeat']['ordinal'] rescue nil)}, {:id=>'repeat_ordinal', :name=>'repeat[ordinal]'}
+    dropdown nil, 'repeat_day', Date::DAYNAMES, {:selected => (params['repeat']['day'] rescue nil)} ,{:id=>'repeat_day', :name=>'repeat[day]'}
+    text_field_tag 'repeat[occurrences]', 1, {:size => 2, :id=>'repeat_occurrences', :value => (params['repeat']['occurrences'] rescue nil)}
+    div.repeat_times! {" more time(s)."}
+  end
+
+  controls :event, actions
+end
+

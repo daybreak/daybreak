@@ -1,0 +1,9 @@
+@person = person
+table.contact_options! do
+  tr {th "Type"; th "Info"; th "Primary?"}
+  person.contact_options.each_with_index do |contact_option, index|
+    render :partial => '/admin/persons/contact_option', :locals => { :contact_option => contact_option, :index => index }
+  end
+end
+render :partial => '/admin/persons/add_contact_option_link', :locals => { :index => person.contact_options.size }
+

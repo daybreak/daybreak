@@ -1,0 +1,149 @@
+* {background-repeat: no-repeat;}
+* {font-family: Helvetica, Tahoma, Geneva, Arial, sans-serif;}
+/* color palette */
+#header { background-image: url(sky.png); background-repeat: repeat-x;}
+#experience, #services, #separator .top, #separator .bottom, #showcase .edge
+	{background-color:  #ffe680; }
+#here4you {background-color: #EAD06A; }
+
+/*layout */
+
+body {background-image: url(sunburst2.png); background-position: bottom; background-attachment: fixed; background-color: white; margin: 0; padding: 0; }
+
+#header, #header div.edge, #risingsun {height: 170px; width: auto; margin: 0;}
+#header {margin-bottom: 30px; }
+#risingsun       { background-image: url(risingsun.png); background-position: 80% 110px ;}
+#header div.edge { border: solid 1px transparent; background-image: url(ragged-bottom.png); background-position: bottom; background-repeat: repeat-x; }
+#brand {width: 250px; height: 120px; margin: 50px auto 0; text-align: center; display: block; }
+#brand img {border: none;}
+/* #showcase{background-image: url(sun-swirl.png); background-position: right; } */
+#logo {margin: 0; }
+#hook {width: 100%; text-align: center; position: absolute; top: 165px; left: 0;}
+#separator {width: 900px; height: auto; margin: 0 auto;}
+#separator .top {background-image: url(bottom-shadow2.png); background-position: top; height: 30px; }
+#separator .bottom { height: 20px;}
+#separator .bottom .right { width:512px; background-image: url(rough-bottom.png); background-position: top; height: 20px; float: right;}
+
+#separator, #main {width: 900px; margin-left: auto; margin-right: auto;}
+#experience {background-image: url(bg.news.top.gif); background-position: bottom;}
+#experience {background-image: url(rough-bottom.png); background-position: -500px bottom;}
+#experience, #services, div.spotlight {width: 356px; }
+#experience h2 {margin: -30px 0 0 0;}
+#experience a .bullets{color: black;}
+#experience a .what{width: 165px; text-transform: uppercase; margin-left: -25px;}
+#experience a .bullets{width: 150px;}
+#experience a .icon {width: 50px; text-align: center;}
+#experience a .icon img { border: none; display: none;}
+#experience a:hover .what {color: white;}
+#experience a:hover .icon img {display: block;}
+#experience a div {height: 70px; margin: 0; padding: 0; float: left;}
+#experience a .what, #experience a .icon  {line-height: 70px; font-size: 2em;}
+#experience a:hover .bullets{color: white; }
+#experience ul {margin:.2em; padding-left: 1em;}
+#showcase, #here4you {width: 478px;}
+#showcase {margin-top: -30px;}
+#here4you {background-image: url(bottom-shadow2.png); background-position: -320px top; }
+#experience, #showcase, #services, #here4you, div.spotlight {float: left; height: 250px;  padding: 1em;}
+div.spotlight {float: none; height: 220px; background-image: url(spotlight.png); background-position: center 5px; margin: -15px;}
+#showcase {height: 280px;}
+#photo-area { float: right; margin: 0 0 .7em .7em; height: 170px; width: 220px;}
+#showcase h1 {margin: 0 0 0 0; font-size: 1.5em;}
+#services {background-image: url(bg.nav.gif); background-position: top;}
+#services {background-image: url(bottom-shadow2.png); }
+#services h2 {margin-bottom: 0;}
+#services h3 {margin: 0;}
+#showcase img#framed,#showcase img#framed2 {display: none;}
+#showcase img#unframed {display: block;}
+#services p {margin: 0 0 .5em 0;}
+#directions {background-image: url(directions.png); background-position: 10px -8px; height: 120px; }
+#directions > div {background-image: url(map.png); background-position: top right; height: 67px; padding: 50px 80px 0 0 ;}
+#services, #here4you {height: 285px;}
+#here4you a{display: block; width: 125px; height: 125px; float: left; margin-right: 1em;}
+#here4you a#children {margin: 0;}
+#here4you a#adults {background-image: url(block-adults.png);}
+#here4you a#students {background-image: url(block-students.png);}
+#here4you a#children {background-image: url(block-children.png);}
+#here4you a#adults:hover {background-image: url(block-adults-hilite.png);}
+#here4you a#students:hover {background-image: url(block-students-hilite.png);}
+#here4you a#children:hover {background-image: url(block-children-hilite.png);}
+#here4you div {margin: 0 auto; width:410px; height: 125px;}
+#showcase #panel {display: none; width: 120px; height: 250px; float: right; margin: 15px -15px 0 15px;}
+/* NAVIGATION BAR */
+
+#feel-summary,#sound-summary,#message-summary {display: none; padding-right: 120px;}
+
+h1, h2, h3 {font-family: Georgia;}
+#event-summary h1{font-size: 2em;}
+#event-summary img.photo {margin-top: -45px;}
+#here4you h2, #services h2, #experience h2 {font-size: 1.8em;}
+#here4you h2, #services h2 {margin-top: .5em;}
+
+#nav a {background-image: url(nav.png); background-position: bottom; height: 45px; display: block;}
+#nav a:hover {background-image: url(nav-hilite.png);}
+#nav li#current a {background-image: url(nav-dull.png);}
+#nav a.home                {width:  60px; background-position:    0   bottom;}
+#nav a.experience          {width: 110px; background-position:  -80px bottom;}
+#nav a.serving-your-family {width: 185px; background-position: -215px bottom;}
+#nav a.serving-you         {width: 110px; background-position: -430px bottom;}
+#nav a.family              {width:  60px; background-position: -560px bottom;}
+#nav a.events              {width:  60px; background-position: -645px bottom;}
+#nav a.about               {width:  60px; background-position: -735px bottom;}
+a#feel:hover          .what {background-image: url(feel.png);}
+a#sound:hover         .what {background-image: url(sound.png);}
+a#message:hover       .what {background-image: url(message.png);}
+a#feel    .what {background-image: url(feel-hilite.png);}
+a#sound   .what {background-image: url(sound-hilite.png); }
+a#message .what {background-image: url(message-hilite.png);}
+#options {position: fixed; top: 10px; left: 10px; width: 100px; height: 300px; }
+
+
+
+#nav {
+  width: 100%;
+  margin: 0;
+  height: 45px;
+	white-space: nowrap;
+	font-family: Times;
+	font-size: 1.1em;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#nav ul {
+  width: 970px;
+  list-style: none;
+  font-size: 70%;
+  margin: 0 auto;
+}
+#nav li {
+  float: left;
+  margin: 0 0 0 2em;
+  padding: 0;
+  line-height: normal;
+  text-indent: 0;
+  text-align: center;
+}
+#nav a {
+  display: block;
+  padding: .3em .6em .3em .6em;
+  text-decoration: none;
+  white-space: nowrap;
+  height: 40px;
+  margin-top: -1px;
+/*  background-color: #FFD42A; */
+}
+#nav a:hover, #nav #current a, #nav #current {
+	/* color: #000; */
+}
+#nav #current a {
+	border-color: transparent;
+}
+#nav a:hover {
+	color: black;
+/*	background-color: #FFE680; */
+}
+#nav #current a, #nav #current a:hover {
+  background-color: transparent;
+}
+
+#footer {display: none;}

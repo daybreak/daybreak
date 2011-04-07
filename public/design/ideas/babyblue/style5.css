@@ -1,0 +1,17 @@
+#experience, #services, #separator .top, #separator .bottom, #showcase .edge
+	{background-color: #DAC876;}
+#header {background-color: #80e5ff;}
+#experience a:hover .bullets{color: #FFEFB2;}
+#experience a .bullets{color: black;}
+
+
+#event-summary h1{background-image: url(current-series4.png); height: 40px;}
+#experience h2 {background-image: url(experience4.png); height: 40px;}
+#services h2 {background-image: url(services4.png);height: 40px;}
+#here4you h2 {background-image: url(were-here-for-you4.png); height: 40px;}
+#here4you a#adults {background-image: url(block-adults2.png);}
+#here4you a#students {background-image: url(block-students2.png);}
+#here4you a#children {background-image: url(block-children2.png);}
+#here4you a#adults:hover {background-image: url(block-adults2-hilite.png);}
+#here4you a#students:hover {background-image: url(block-students2-hilite.png);}
+#here4you a#children:hover {background-image: url(block-children2-hilite.png);}

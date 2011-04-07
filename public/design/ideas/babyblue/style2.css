@@ -1,0 +1,12 @@
+#experience, #services, #separator .top, #separator .bottom, #showcase .edge
+	{background-color: tan;}
+#here4you
+	{background-color: #DACD98; background-color: #F2E5C0 }
+
+#logo {background-position: center;}
+#showcase img#framed2 {display: block;}
+#showcase img#unframed {display: none;}
+#event-summary h1{background-image: url(current-series5.png); height: 30px;}
+#experience h2 {background-image: url(experience5.png); height: 30px;}
+#services h2 {background-image: url(services5.png);height: 30px;}
+#here4you h2 {background-image: url(were-here-for-you5.png); height: 30px;}

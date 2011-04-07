@@ -1,0 +1,5 @@
+div.supervised_list! do
+  render :partial => '/admin/persons/table'
+end
+div.search_list! { small {"Use " + b("People Search") + " to lookup/add new supervised people"} }
+

@@ -1,0 +1,13 @@
+include_stylesheet 'admin/event'
+h1 "Resource Category"
+form(:action => url_for(:action => actions.first, :id => @resource_category), :method => :post) do
+  authenticity_token
+  div.form_area do
+    entitled :resource_category, :name
+    field :resource_category, :description, :type => :textarea
+    br
+    updated_stamp @resource_category
+  end
+  text controls(:resource_category, actions)
+end
+

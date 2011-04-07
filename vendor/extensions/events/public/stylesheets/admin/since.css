@@ -1,0 +1,8 @@
+form.search {margin-left: 10px;}
+form.search, form.search input#from.date, form.search input#thru.date, form.search label, form.search select {display: inline !important; clear: none !important; float: none !important; }
+form.search input#from.date, form.search input#thru.date {width: 6em;}
+form.search label, form.search input, form.search select {display: inline !important; }
+form.search select {margin-right: .3em;}
+form.search input[value=Find] {font-size: 1em; margin: 0 .5em 0 5px;}
+form.search div.field {white-space: nowrap; float: none;}
+

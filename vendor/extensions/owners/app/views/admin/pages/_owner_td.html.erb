@@ -1,0 +1,7 @@
+<%
+owner = page.parts.detect{|part| part.name == 'owner'}.try(:content)
+owner = nil if owner.to_s.strip.length == 0
+unassigned = owner.nil?
+owner_name = unassigned ? 'Unassigned' : owner.split("\n").first
+%><td class='owner'<% if unassigned%> style='opacity: .3'<% end %>><%= owner_name %></td>
+

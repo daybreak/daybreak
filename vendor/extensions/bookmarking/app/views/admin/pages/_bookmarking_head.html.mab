@@ -1,0 +1,5 @@
+include_javascript 'admin/bookmarking'
+include_stylesheet 'admin/bookmarking'
+#fat = form_authenticity_token
+#input.authenticity_token!(:value=>fat, :type=>'hidden')
+

@@ -1,0 +1,131 @@
+div.group {
+  min-height: 360px;
+  clear: both;
+}
+div.top.group {
+  margin-top: 15px;
+}
+div.panel {
+  float: left;
+  margin: -20px 6px 0 -25px;
+}
+div.panel .body, div.panel .footer {
+  width: 370px;
+
+  background-image: url(/images/themes/urban/bluebox.png);
+}
+div.panel .body {
+  padding: 45px 50px 0;
+  background-position: center top;
+  min-height: 306px;
+}
+div.panel .footer {
+  height: 86px;
+  padding: 0 50px;
+  background-position: center bottom;
+  margin-bottom: -40px;
+}
+div.panel h1 {
+  margin: 0 0 -6px -12px;
+}
+div.panel.bright .body,
+div.panel.bright .footer {
+  background-image: url(/images/themes/urban/orangebox.png);
+}
+#events {
+  margin-right: -100px;
+}
+#connecting {
+  margin: 0 -135px 0 -10px;
+  min-height: 420px;
+  width: 550px;
+  background-image: url(/images/themes/urban/orangebox-tilted.png);
+}
+#connecting .footer {
+  display: none;
+}
+#connecting h1 {
+  margin-top: -15px;
+  margin-left: 5px;
+}
+#connecting > * {
+  background-image: none !important;
+}
+#contributing li{
+  float: left;
+  padding: 8px;
+  margin-top: 15px;
+  height: 130px;
+}
+#contributing ul {
+  list-style: none;
+  margin: 0 -48px;
+}
+#contributing li a {
+  border: solid 1px transparent;
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+#global,
+#local {
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+#contributing li#global{
+  background-image: url(/images/themes/urban/icons/global.png);
+  width: 185px;
+}
+#contributing li#local{
+  background-image: url(/images/themes/urban/icons/local.png);
+  width: 163px;
+  padding-right: 10px;
+}
+div.panel *,
+#events * {
+  color: white;
+}
+div.panel p,
+div.panel ul {
+  margin-bottom: .6em !important;
+}
+.happened_true {
+  opacity: .5;
+}
+#connecting {
+  font-size: 1em;
+}
+#events p {
+  margin-top: .5em;
+}
+#events > a {
+  font-size: 1em;
+  text-decoration: none;
+  color: white;
+}
+#events h3 {
+  font-weight: normal !important;
+}
+#events * {
+  font-size: 1.02em;
+}
+#events .time {
+  font-size: .75em;
+}
+#celebrating img.photo {
+  position: static;
+  margin: -135px -75px 0 0;
+  float: right;
+  z-index: 333;
+}
+
+/* Chrome Hack */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  div.panel .footer {margin-top: -8px;}
+}
+
+/* Opera Hack */
+@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0) {
+  div.panel .footer {margin-top: -8px;}
+}
+

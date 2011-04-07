@@ -1,0 +1,6 @@
+<% include_stylesheet 'admin/form/person' %>
+<h1>Directory</h1>
+<% enstyle_form_for :person, :actions => actions, :multipart => true do |f| %>
+<%= render :partial => 'fields', :locals => {:f => f} %>
+<% end %>
+

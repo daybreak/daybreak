@@ -1,0 +1,22 @@
+<% include_javascript 'admin/collapsing_fieldsets' %>
+<% if @page.class.respond_to?(:facets) %>
+<% facets = @page.class.facets %>
+  <% facets.include_stylesheets(controller) %>
+  <% facets.fields(:section => :meta).each do |field| %>
+    <tr class='<%= field.descriptors.join(' ') %>'>
+      <th class='label'>
+        <%= field.label_tag %>
+      </th>
+      <td class='field'>
+        <%= field.input_tag(@page, params) %>
+        <% if field.description %>
+          <div class='description'><%= field.description %></div>
+        <% end %>
+        <% if error = field.error(@page) %>
+          <div class='error'><%= error %></div>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>
+

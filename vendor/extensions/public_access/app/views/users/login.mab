@@ -1,0 +1,28 @@
+style do %[
+	div.instructions {text-align: center;}
+]
+end
+if logged_in?
+  h1 "Login"
+  p{"You are logged in as #{current_user.name}."}
+  p{link_to('Logout', :action => 'logout') + " | " + link_to('Change password', :action => 'change_password')}
+else
+	form(:action => url_for(:action => :login), :id => :login, :method => :post) do
+  	authenticity_token
+		h2 "Login"
+		div.field do
+      label "Username"
+			text_field_tag "username", @default_username
+		end
+		div.field do
+			label "Password"
+			password_field_tag "password"
+		end
+		div.options{ submit_tag "Login" }
+  end
+  div.instructions do
+		p{"If you are a member of Daybreak, you may login to access member-only sections of our Daybreak Family website."}
+  	p{"Members who have not yet created an account may " + a(:href=> url_for(:action => :register)){"register now"} + "."}
+  end
+end
+

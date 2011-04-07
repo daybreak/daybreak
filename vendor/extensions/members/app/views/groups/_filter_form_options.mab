@@ -1,0 +1,40 @@
+fieldset do
+  legend 'Group Type'
+  GroupType.find(:all).each_with_index do |type, index|
+    text label_for(type.name, :for => "group_type[#{index}]", :on => :right){ |name| check_box_tag(name, type.id) }
+  end
+end
+fieldset do
+  legend 'Meeting Frequency'
+  Group::MEETING_FREQUENCIES.each_with_index do |value, index|
+    text label_for(value, :for => "meeting_frequency[#{index}]", :on => :right){ |name| check_box_tag(name, index) }
+  end
+end
+fieldset do
+  legend 'Meeting Day'
+  valid_days = Group.find_days
+  Date::DAYNAMES.each_with_index do |value, index|
+    disabled = !valid_days.include?(index)
+    text label_for(value, :for => "meeting_day_of_week[#{index}]", :on => :right, :readonly => disabled ){ |name| check_box_tag(name, index, false, {:disabled => disabled}) }
+  end
+end
+fieldset do
+  legend 'Meeting Time'
+  Group.find_times.each_with_index do |time, index|
+    text label_for(time.strftime("%l:%M %p").strip, :for => "meeting_time_of_day[#{index}]", :on => :right){ |name| check_box_tag(name, time.strftime("%H:%M:%S")) }
+  end
+end
+fieldset do
+  legend 'Meeting Location'
+  Group.find_cities.each_with_index do |city, index|
+    text label_for(city, :for => "city[#{index}]", :on => :right){ |name| check_box_tag(name, city, false) }
+  end
+end
+fieldset.about_you! do
+  legend 'About You'
+  text label_for('Need child care?', :for => "need_child_care", :on => :right){ |name| check_box_tag(name, "1", params[:need_child_care]) }
+  text label_for('Include only groups having openings', :for => "has_room", :on => :right){ |name| check_box_tag(name, '1', params[:has_room]) }
+  text label_for('Your age', :for => "age", :id => :age_field){ |name| text_field_tag(name, nil, {:size => 2}) } #TODO: :hint => '(for groups that include your age)'
+end
+text submit_tag("Apply Filter", :style => 'margin-top: 5px; ', :id => 'apply_filter')
+span.filtering!(:style=> "display: none;") {img :src => '/images/ajax/activity_bar.gif', :alt => 'Please wait a moment...'}

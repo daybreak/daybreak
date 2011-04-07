@@ -1,0 +1,7 @@
+view_on_site = link_to('View On Site', :controller => "/groups", :action => 'show', :id => @group.id)
+render :partial => 'form', :locals => { :actions => [:update, :delete, :index, view_on_site] }
+render :partial => 'search'
+#actions do |a,t|
+#  a.add render(:partial => 'search')
+#end
+

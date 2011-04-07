@@ -1,0 +1,20 @@
+== TO-DO list
+
+- add an "expr" attribute to <r:ruby> tag, so it evaluates the expression but does not render the value.  For example:
+
+  <r:ruby expr="@limit = 3" />
+
+  is equal to
+
+  <r:ruby> @limit = 3; "" </r:ruby>
+
+- <tag>s inside <r:erb> tags with ruby loops don't expand multiple times
+    - the solution is to first apply the ERB filter and then expand the result
+    - seems that this is not possible with Radius
+    - for more info refer to the <r:erb> and <r:expand> documentation
+
+- improve security
+    - setting the $SAFE variable does not seem useful
+    - Maybe also add a simple YAML file with the list of users allowed to use the tags.
+
+- implement extra tags like <r:case> and <r:each>

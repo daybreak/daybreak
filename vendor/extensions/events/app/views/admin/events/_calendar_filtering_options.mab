@@ -1,0 +1,4 @@
+EventCategory.find_filtered_categories.each_with_index do |category, index|
+  text label_for(category.name.titleize, :for => "event_category[#{index}]", :on => :right){ |name| check_box_tag(name, "calendar_#{category.id}", true, :class => 'filter', :onclick => "apply_filter(this, false)" ) }
+end
+include_javascript 'calendar_filtering'

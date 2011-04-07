@@ -1,0 +1,302 @@
+* {
+  background-repeat: no-repeat;
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+body {
+  background-color: white;
+  background-repeat: repeat;
+  background-image: url(/images/themes/urban/outerback.png);
+  padding: 0;
+  margin: 0 auto;
+  width: 900px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: .9em;
+}
+header, footer, nav, aside {
+  display: block !important;
+}
+#wrapper {
+  background-image: url(/images/themes/urban/innerback.png);
+  width: 900px;
+  min-height: 100%;
+  height: auto !important;
+/*  height: 100%; */
+  margin: 0 auto -115px;
+  padding: 0 15px;
+  background-repeat: repeat-y;
+}
+header, nav, #main, #extras, footer {
+  margin: 0 auto;
+  display: block;
+  padding: 0;
+  position: relative;
+  width: 900px;
+}
+header {
+  width: 916px;
+  margin: 0 -8px;
+}
+header, footer {
+  z-index: 99;
+}
+#main {
+  background-repeat: repeat !important;
+  z-index: 0;
+  padding: 76px 18px 18px 18px;
+  width: 864px;
+  font-size: 0.95em;
+}
+header {
+  background: url(/images/themes/urban/header.png);
+  height: 155px;
+  margin-bottom: -38px;
+}
+/**/
+#logo {
+  margin: 4px 0 0 20px;
+}
+#facebook {
+  height: 60px;
+  left: 15px;
+  top: 40px;
+  position: absolute;
+}
+img {
+  border: none;
+}
+nav {
+  position: absolute;
+  top: 147px;
+  margin: 0 auto;
+  z-index: 99;
+  height: 0;
+}
+nav ul {
+  margin: -29px auto 0;
+  display: block;
+  padding: 0;
+}
+nav li:first-child {
+  margin-left: 12px;
+}
+nav > ul > li {
+  vertical-align: top;
+  background-image: url(/images/themes/urban/otab.png);
+  min-height: 85px;
+  width: 180px;
+  background-position: -5px bottom;
+  display: inline-block;
+  list-style: none;
+  margin-right: -5px;
+  float: left;
+}
+
+nav ul.submenu {
+  display: none;
+  float: left;
+  padding: .7em;
+  padding: 0 0 55px;
+  margin: -5px 29px 0;
+}
+nav li:hover ul.submenu {
+  display: block;
+}
+nav ul.submenu li a {
+  font-size: .8em;
+  text-align: center;
+  color: white;
+  line-height: 1em;
+}
+nav ul.submenu li {
+  line-height: 1.2em;
+}
+nav li:hover ul.submenu li {
+  display: block;
+}
+nav > ul > li:hover {
+  min-height: 90px;
+}
+nav ul.submenu li, nav ul.submenu a {
+  background-image: none !important;
+  padding: 0;
+  margin: 0;
+  height: auto;
+}
+nav li#new-here {
+  background-image: url(/images/themes/urban/btab.png);
+}
+nav li.selected, nav li.here {
+  background-image: url(/images/themes/urban/otab-glow.png);
+}
+nav li#new-here.selected, nav li#new-here.here  {
+  background-image: url(/images/themes/urban/btab-glow.png);
+}
+nav li.expanded {
+  height: 180px;
+}
+nav li > a, nav li.attention > a {
+  width: 117px;
+  height: 45px;
+  display: inline-block;
+  margin: -2px 0 0 29px;
+  background-position: center;
+}
+nav #campuses a {
+  background-image: url(/images/themes/urban/nav/home/campuses.png);
+}
+nav #for-your-kids a {
+  background-image: url(/images/themes/urban/nav/home/for-your-kids.png);
+}
+nav #about-us a {
+  background-image: url(/images/themes/urban/nav/home/about-us.png);
+}
+nav #sermons a {
+  background-image: url(/images/themes/urban/nav/home/sermons.png);
+}
+nav #talk-to-us a {
+  background-image: url(/images/themes/urban/nav/home/talk-to-us.png);
+}
+nav #new-here a {
+  background-image: url(/images/themes/urban/nav/home/new-here.png);
+}
+
+.push {
+  height: 115px;
+  clear: both;
+}
+footer {
+  height: 79px !important;
+  padding-top: 36px;
+  background: url(/images/themes/urban/footer.png);
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  margin: 0;
+  clear: both;
+  margin: 0 15px;
+}
+footer p {
+  font-size: .8em;
+  margin: 0;
+  text-align: center;
+  display: block;
+}
+#main p {
+  margin-bottom: 1em;
+}
+div.panel .body, div.panel .footer {
+  margin: 0;
+}
+.back {
+  font-size: .8em;
+  color: black;
+}
+.back a {
+  color: white;
+}
+blockquote {
+  margin: .2em 2em;
+  font-family: georgia;
+  font-size: 1.1em;
+  color: #335A79;
+}
+blockquote cite {
+  font-style: bold-italic;
+  display: block;
+  font-size: .9em;
+  margin-left: 3em;
+}
+blockquote cite:before {
+ content: "—";
+}
+#main ul + p, #main ol + p {
+  margin-top: 1em;
+}
+#sidebar #contact, #sidebar #resources, #sidebar #links, #sidebar #attached_events {
+  margin: 1em 0 1em 40px;
+  display: block;
+  width: 215px;
+}
+#sidebar #resources ul {
+  padding: 0;
+  list-style: none;
+  font-size: .9em;
+  margin-right: -200px;
+}
+#campus{
+  background-image: url(/images/themes/urban/btab.png);
+  background-position: top;
+  margin-top: 1em;
+  float: right;
+  width: 150px;
+  list-style: none;
+  padding: 20px 0 0;
+  margin: 79px 27px 0 0;
+}
+#campus:hover {
+  margin-top: 60px;
+}
+#campus a {
+  color: white;
+}
+#campus li {
+  text-align: center;
+  display: none;
+  height: 20px;
+}
+#campus li.active, #campus:hover li {
+  display: block;
+}
+img#tagline {
+  position: absolute;
+  top: 48px;
+  right: 90px;
+}
+marquee#bulletin {
+  position: absolute;
+  top: 10px;
+  margin-left: 5px;
+  width: 903px;
+  color: red;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+hr.edge, .clear {
+  clear: both;
+}
+div.field label {
+  width: 14em;
+  float: left;
+}
+div.field small {
+  margin-left: 18em;
+}
+div.field.date input {
+  width: 7em;
+}
+div.dateblock {
+  float: left;
+  background-color: #D87000;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 1em;
+  margin: .5em 1em .5em 0;
+  color: white;
+  text-align: center;
+}
+div.dateblock .month {
+  font-weight: bold;
+  text-transform: uppercase;
+  
+}
+
+#attached_events ul a.title{display: block;}
+#attached_events ul {padding: 0; list-style: none;}
+#attached_events ul li {margin-bottom: .5em;}
+#attached_events ul .time{font-size: .9em;}
+
+
+

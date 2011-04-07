@@ -1,0 +1,18 @@
+h1 "Events"
+if @events.size == 0
+  p "No upcoming events at this time."
+else
+  for @event in @events
+    div.event do
+      div.dateblock do
+        div.month do
+          @event.start_at.strftime("%b")
+        end
+        text @event.start_at.strftime("%e")
+      end
+      a(:href=>url_for(:action => :show, :id => @event.id)){h2 @event.title}
+      small format_range(@event.start_at, @event.end_at, :use_date => false)
+      p @event.description
+    end
+  end
+end

@@ -1,0 +1,14 @@
+if @user and @user.locked?
+  h1 "Bad Request"
+  p "Your account has not been unlocked."
+else
+  h1 "Account Activated!"
+  p{"You are logged in as #{current_user.name}."}
+  if @user.directory_access?
+    p{"We believe we already have your personal information in our database under the name #{link_to(@user.person.full_name, :controller => 'family/persons', :action => 'show', :id => @user.person.id)}.  This information has been tied to your user login.  If we have mistaken your identity, you can make the correction to your account after logging in."}
+    p{"This connection was made based on the email address we have on record.  Confusion only occurs between people--typically from the same household--who share an email address."}
+  else
+    p{"We do not have you in our directory. We determined this based on the fact that we did not have the email address you used on file."}
+  end
+end
+

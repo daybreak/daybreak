@@ -1,0 +1,31 @@
+searching = %w(name_start birth_month).select{|param| params[param]}.any?
+h1 "Daybreak Family Directory"
+render :partial => '/admin/persons/search_options'
+if @people and @people.any?
+  hr
+  table do
+    tr {th ""; th.address "Person"; th.contact_info "Contact"; th.born_on "Birthday"; th.member "Member"}
+    for @person in @people
+      tr(:class=> "gender #{@person.gender.downcase}") do
+        td.photo {show_photo(@person)}
+        td.address do
+        	h2 do
+        		text link_to(@person.full_name, :action => 'show', :id => @person.id)
+        	end
+          text @person.full_address(false).join("<br/>")
+        end
+        td.contact_info {@person.contact_info.join("<br/>")}
+        td.born_on {@person.born_on.strftime("%B %d") if @person.born_on}
+				td.member {@person.member? ? "Yes" : "-"}
+      end
+    end
+  end
+  hr.edge
+elsif searching
+  p.msg "No matching results found."
+else
+  p.msg "Please enter your search criteria."
+end
+
+hr.edge
+

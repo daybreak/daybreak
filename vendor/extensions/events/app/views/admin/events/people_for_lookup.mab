@@ -1,0 +1,5 @@
+#TODO: delete this?
+people = []
+@people.each_with_index do |person, index|
+	people[index] = person.name
+end

@@ -1,0 +1,82 @@
+.tab img.close {
+  display: none;
+}
+#content form p a {
+  color: black;
+}
+input#event_title {
+	width: 30em !important;
+}
+p.calendar select {
+  font-size: 2.2em;
+}
+p.title, p.calendar {
+  float: left;
+  padding-right: .4em;
+}
+p.calendar select {
+  margin-top: 4px;
+}
+p.calendar label, p.calendar select, p.title label, p.title input{
+  float: left;
+  clear: both;
+}
+#event_invitation_color {
+  width: 6em;
+}
+#event_description {
+	height: 1em;
+}
+#event_invitation {
+	height: 10em !important;
+}
+#color_sample {
+	border: solid 1px gray;
+	padding: .6em;
+	width: 20em;
+	height: 1.5em;
+	text-align: center;
+	display: block;
+  float: right;
+}
+#event_expected_attendance {
+	width: 3em;
+}
+#event_location, #event_location_url {
+  width: 100%;
+}
+tr.pending td, tr.pending a, tr.pending a .title {color: #AAA !important;}
+tr.pending td .category, tr.declined td .category {color: white !important;}
+tr.declined td, tr.declined a, tr.declined a .title {color: #cc0000 !important;}
+
+/* #content table.fieldset tr:first-child td {border-top: solid 1px #ddd !important;} */
+
+/* table.index tr {background-color: white; border-top: solid 1px black; border-bottom: solid 1px black;} */
+table.index tfoot tr {background-color: #DDD;}
+table.index {margin-bottom: 1em;}
+table.index th.number, div.registrations-page td.number {text-align: center !important; }
+table.index td {padding: .3em !important; border: none !important; border-bottom: solid 1px lightgray !important;}
+table.index th.number, div.registrations-page td.number {text-align: center !important; width: 5em !important;}
+table.index tr.totals td {background-color: lightgray; font-weight: bold;}
+/*table.index tbody { overflow-y: scroll; height: 18em !important; overflow-x: hidden; } */
+table.index tr.norecs { font-color: dimgray; font-weight: bold;}
+table.index tr.norecs > td { text-align: center !important; }
+table.index td img.calendar_legend {float: right; }
+table.index td.phone, div.registrations-page th.phone {width: 10em; white-space: nowrap; text-align: center; }
+table.index td.datetime, th.datetime {width: 6em;}
+table.index td.title span.category {white-space: nowrap;}
+table.index table.basic tr.node td.page {padding: .3em 0 1em !important; }
+
+div#restrictions {float: right; }
+
+#filtering fieldset.right {width: 12em; float: right; margin-left: 1em;}
+#filtering fieldset div.field {float: left; padding-right: 1em;}
+#filtering fieldset { margin-bottom: 1em; border: none; background-color: #F5F5F5;}
+#filtering legend {background-color: white; font-weight: bold; -moz-border-radius: .3em; border-radius: .3em; }
+span.canceled {text-decoration: line-through !important;}
+
+.alternate_date {background-color: pink; float: right;}
+#repeats {color: black; padding: .3em; width: 38em; float: right; text-align: right; margin-top: 1.75em;}
+#repeat_mode, #repeat_ordinal, #repeat_day, #repeat_occurrences, #repeat_repeats, #repeat_times {float: left; clear: none; margin-left: .2em;}
+#repeat_times, #repeat_repeats {padding: .4em .2em;}
+

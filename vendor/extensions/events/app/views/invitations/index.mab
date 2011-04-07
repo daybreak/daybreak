@@ -1,0 +1,17 @@
+include_stylesheet "admin/events"
+if @events.size > 0
+  h1 "Invite Someone To Our..."
+  for @event in @events
+    div.event do
+      text to_calendar_page(@event.start_at)
+      h2 @event.title
+      div.subtitle do
+        text format_range(@event.start_at, @event.end_at, :use_date => false, :prefix => ', ', :suffix => ' | ')
+        text link_to("Invite", :action => 'invite', :id => @event.id)
+      end
+      text @event.description
+    end
+  end
+else 
+  flash[:notice] = "There are presently no events to which you make extend invitations."
+end 

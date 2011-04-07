@@ -1,0 +1,30 @@
+p.stack do
+  label(:for => 'person_first_name'){"First name"}
+  br
+  text_field 'person', 'first_name', :class => 'first_name'
+end
+p.end do
+  label(:for => 'person_last_name'){"Last name"}
+  br
+  text_field 'person', 'last_name', :class => 'last_name'  
+end
+p do
+  label(:for=> 'person_address'){"Address"}
+  br
+  text_area 'person', 'address', :class => 'address', :rows => 3  
+end
+p do
+  label(:for => 'person_city'){"City"}
+  br
+  text_field 'person', 'city'
+end
+p.stack do
+  label(:for => 'person_state'){"State"}
+  br
+  text_field 'person', 'state', :class => 'state'  
+end
+p.end do 
+  label(:for => 'person_zip'){"Zip"}
+  br
+  text_field 'person', 'zip', :class => 'zip'  
+end

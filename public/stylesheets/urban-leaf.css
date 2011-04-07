@@ -1,0 +1,86 @@
+#extras {
+  height: 270px;
+  clear: both;
+  font-size: .9em;
+}
+div.extra {
+  display: block;
+  height: 234px;
+  width: 365px;
+  margin-left: 27px;
+  z-index: 0;
+  left: 18px;
+  position: absolute;
+  overflow: hidden;
+}
+div.extra.orange {
+  left: 0;
+  background-image: url(/images/themes/urban/orangebox-bottom.png);
+  background-position: -30px 0;
+  padding: 54px 54px 18px 40px;
+  z-index: 2;
+}
+div.extra.blue {
+  background-image: url(/images/themes/urban/bluebox-bottom.png);
+  background-position: -30px 0;
+  top: -9px;
+  left: 392px;
+  padding: 95px 54px 18px 55px;
+  z-index: 3;
+}
+#sidebar {
+  float: right;
+}
+#aside *, .extra {
+  color: white;
+}
+#aside a{
+  color: black;
+  text-decoration: none;
+}
+#aside a[href]{
+  color: white;
+}
+#aside a[href]:hover {
+  color: black;
+}
+#aside li.parent > a {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: .25em;
+  display: block;
+  text-decoration: underline;
+}
+#aside {
+  margin: -10px -15px -50px;
+}
+#aside > div.top, #aside > div.bottom {
+  background-repeat: no-repeat;
+  background-image: url(/images/themes/urban/aside.png);
+  vertical-align: top;
+  width: 190px;
+  padding: 0 45px 0 65px;
+}
+#aside ul {
+  list-style: none;
+  padding-left: 1em;
+}
+#aside > div.top > ul, #aside > div.top > ul > li > ul {
+  padding-left: 0;
+}
+#aside > div.top {
+  min-height: 185px;
+  padding-top: 45px;
+}
+#aside > div.bottom {
+  height: 85px;
+  background-position: 0 bottom;
+}
+#aside > div.top > ul {
+  margin: 0;
+  min-height: 185px;
+}
+img.ministry-logo {
+  float: right;
+}
+

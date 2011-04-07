@@ -1,0 +1,9 @@
+
+rel_url = url_for(:controller => "registrations", :action => "confirmation", :id => @registration.id, :p => @registration.password)
+link = Radiant::Config['org.root_url'] + rel_url
+link = link_to(link, link)
+p{"You have registered #{@registration.attendee_description} for #{@registration.page.title}."}
+p{"Your confirmation number is: #{@registration.id}"}
+p{"To view the details or to make changes, please go to this link: #{link}"}
+p{"Thank you for registering.  See you #{@registration.page.start_at.strftime('%A, %B %e at %l:%M %p')}."}
+

@@ -1,0 +1,12 @@
+include_stylesheet 'admin/since'
+form(:action => url_for(:action => :index), :method => :get, :class => "search") do
+  authenticity_token
+  text select_tag "view", options_for_select(%w{ List Planner }, (params[:view].to_s rescue 'List'))
+  label "From: "
+  text text_field_tag('from', params[:from] || Time.today.formatted, :size => 10, :class => 'date')
+  text " "
+  label "Thru: "
+  text text_field_tag('thru', params[:thru], :size => 10, :class => 'date')
+	text submit_tag('Find', :name => nil)
+end
+

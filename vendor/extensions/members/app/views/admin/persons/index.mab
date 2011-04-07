@@ -1,0 +1,12 @@
+unless @table_only
+  h1 "Directory"
+  p "The people who attend our church."
+end
+render :partial => 'table'
+render :partial => 'search_options'
+unless @table_only
+  actions do |a,t|
+    a.add new_record('Person')
+    a.add link_to("Positions", '/admin/positions')
+  end
+end

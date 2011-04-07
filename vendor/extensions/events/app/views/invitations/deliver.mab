@@ -1,0 +1,9 @@
+h1 "Invitation Delivered!"
+p "Your invitation to the #{@event.title} has been sent."
+ul do
+  @recipients.collect { |email| li email }
+end
+link = []
+link << link_to('Invite Someone Else', :action => :invite, :id=> @event)
+link << link_to('Browse Invitations', :action => :index)
+text link.join(" | ")

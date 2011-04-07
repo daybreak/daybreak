@@ -1,0 +1,21 @@
+p{"#{@person.full_name }'s record has just been changed."}
+p{Radiant::Config['org.root_url'] + url_for(:controller => "family/persons", :action => "show", :id => @person.id)}
+@person.attributes.each_pair do |key,value|
+  b{key}
+  text " = #{value}"
+  br
+end
+if @person.contact_options.any?
+  ul do
+    li do
+      @person.contact_options.each do |contact_option|
+        contact_option.attributes.each_pair do |key,value|
+          b{key}
+          text " = #{value}"
+          br
+        end
+      end
+    end
+  end
+end
+

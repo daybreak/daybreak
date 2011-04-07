@@ -1,0 +1,20 @@
+text @subhead
+table(:class=>'index people') do
+  thead { tr {th "Name"; th "Born on"; th "Contact"; th "Role" if @group; th "Modify"} }
+  for @person in @people
+    row_id = "person_#{@person.id}#{searching ? '_s' : ''}"
+    tr :id => row_id, :class => 'node level-0' do
+      td.page do
+        span.w1 do
+          text person_link(@person)
+          p { @person.summary }
+        end
+      end
+      td.date     {@person.born_on.strftime("%b %d") rescue ''}
+      td.contact  {@person.contact_info.join("<br/>")}
+      td.role     {} if @group
+      td.modify   {mod_links(row_id, @person, @group, @position)}
+    end
+  end
+end
+

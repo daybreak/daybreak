@@ -1,0 +1,18 @@
+root_url = Radiant::Config['org.root_url']
+edit_event_url = root_url + url_for(:controller => "admin/events", :action => "edit", :id => @event.id)
+edit_event_request_url = root_url + url_for(:controller => "family/events", :action => "event_request", :id => @event.id, :access_key => @event.access_key)
+p do
+  text "The event \""
+  a(:href=> edit_event_url){@event.title}
+  text "\" was requested to be held on #{@event.start_at.strftime("%m/%d/%Y")} from #{@event.start_at.strftime("%l:%M %p")} to #{@event.end_at.strftime("%l:%M %p")}.  The contact #{@event.contact_name} can be reached at #{@event.contact_phone} or #{@event.contact_email}."
+end
+if @event.created_by
+  p do
+    text "The "
+    a(:href=> edit_event_request_url){"event request"}
+    text " was submitted by "
+    a(:href=> "mailto:#{@event.created_by.email}"){@event.created_by.name}
+    text "."
+  end
+end
+

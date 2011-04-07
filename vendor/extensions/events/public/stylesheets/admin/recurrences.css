@@ -1,0 +1,8 @@
+.tab img.close {
+  display: none;
+}
+#recurrence_description, #recurrence_pre_registration_message, #recurrence_confirmation_message {width: 100%; height: 19em;}
+#recurrence_description {height: 7em;}
+div.field.sort_order, div.field.minimum_age, div.field.require_authentication, div.field.discontinued {float: left; width: 30em;}
+div.field.minimum_age, div.field.require_authentication {clear: left;}
+#content form .page .hint {display: block; margin: -6px 0 8px;} 

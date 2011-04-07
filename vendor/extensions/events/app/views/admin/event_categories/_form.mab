@@ -1,0 +1,13 @@
+include_stylesheet 'admin/event'
+h1 "Event Category"
+form(:action => url_for(:action => actions.first, :id => @event_category), :method => :post) do
+  authenticity_token
+  div.form_area do
+    entitled :event_category, :name
+    field :event_category, :description, :type => :textarea, :class => :simple
+    br
+    updated_stamp @event_category
+  end
+  text controls(:event_category, actions)
+end
+

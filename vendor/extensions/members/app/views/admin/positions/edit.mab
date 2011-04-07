@@ -1,0 +1,11 @@
+h1 "#{@position.person.full_name}, #{@position.title}"
+form(:action => url_for(:action => 'update', :id => @position)) do
+  authenticity_token
+  div.form_area do
+    h2 "Supervises..."
+	  render :partial => 'form'
+	  text controls :position, :update, :delete, :index
+	end
+end
+render :partial => 'search_form', :locals => {:position => @position}
+

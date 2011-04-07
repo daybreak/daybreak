@@ -1,0 +1,62 @@
+share_info = false
+may_join = false
+h1 @group.name
+text show_photo(@group, :small)
+div @group.description
+fieldset.tight do
+  legend "Meetings"
+  text @group.meetings.join("<br/>")
+end
+fieldset.tight do
+  legend "Meeting Location"
+  text link_to_map(@group.location.join("<br/>"), @group.address, @group.city, @group.state, @group.zip)
+end
+fieldset.tight do
+  legend "Members"
+  text @group.members.join("<br/>")
+  div do
+    if !current_user or @group.belong_to?(current_user)
+      br
+    elsif @group.is_full?
+      text "At capacity"
+    else
+      may_join = true
+      text link_to('Join', {:action => :join, :id => @group.id}, :confirm => 'The leader will be notified that you wish to join.  Are you sure?')
+    end
+  end
+end
+hr.clear
+include_stylesheet 'table'
+table do
+  tr {th "#"; th "Name"; th "Role"; th "Email"; th "Phone"; th ""}
+  @group.slots.each_with_index do |@group_member, index|
+    tr do
+      td.number { (index + 1).to_s + "."}
+      if @group_member
+        # TODO: extract business logic (like share_info) to the controller
+        share_info = @group_member.person.leader? or @group_member.person.share_info_with(current_user) rescue false
+        td.member {share_info ? link_to(@group_member.person.full_name, :controller => 'persons', :action => 'show', :id => @group_member.person.id) : @group_member.person.anonymous}
+        td {@group_member.group_role.name if @group_member.group_role}
+        td {link_to @group_member.person.email, "mailto:#{@group_member.person.email}" if share_info and @group_member.person.email }
+        td {@group_member.person.phone_numbers.join("<br/>") if share_info}
+      else
+        td(:colspan=>'5'){small {"(Open Spot)"}}
+      end
+    end
+  end
+end
+links = []
+links << link_to("Email Group", "mailto:#{@group.mailing_list.join(',')}") if @group.mailing_list.any? and share_info
+links << link_to("Browse Groups", :action => :index)
+links << link_to("Edit Group", :controller => '/admin/groups', :action => :edit, :id => @group.id) if @group.may_change(current_user)
+text links.join(" | ")
+
+p do
+  text "Feel free to contact the leader if you have any questions about this group."
+end
+if may_join
+  p do
+    "You may join from this page if you like.  If you do, the leader will be contacting you about your first visit."
+  end
+end
+

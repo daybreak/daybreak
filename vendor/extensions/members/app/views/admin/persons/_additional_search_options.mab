@@ -1,0 +1,27 @@
+div.field do 
+  text option_set("name_start_letter", ("A".."Z").to_a){ |letter| letter }
+end
+br
+div.field do
+  label "Born in month:"
+  text option_set("birth_month", (1..12).to_a){ |month| Date::ABBR_MONTHNAMES[month] }
+end
+br
+div.field do
+  label "Member status:"
+  text option_set("person_type_id", PersonType.find(:all).collect{|pt| pt.id }, 3.to_s){ |id| PersonType.find(id).name.capitalize }  
+end
+br
+div.field do
+  label "In a small group?:"
+  text option_set("small_group", ["Yes", "No"]){|answer| answer}
+end
+br
+div.field do
+  label "Active?:"
+  text option_set("active", ["Yes", "No"], "Yes"){|answer| answer}
+end
+br
+div.field do
+  small "* = exclude criteria from search"  
+end

@@ -1,0 +1,34 @@
+<h1>Configuration</h1>
+<form method="post">
+<%= authenticity_token %>
+<%
+	current_section = nil
+	@config_items.each do |config|
+	 	section = config.key.match(/^([a-z_]*)./)[1]
+		display_item = config.key.gsub(section+".", '').gsub('.', ' ')
+		nodes = config.key.split(".")
+		nodes.shift
+		display_as = nodes.join(" ").titleize
+-%>
+
+		<% if section != current_section %>
+			<% unless current_section.nil? %>
+			</table>
+			<% end %>
+			<h3><%= section.titleize %></h3>
+			<table class="fieldset" cellpadding="0" cellspacing="0" border="0">
+		<% end -%>
+
+    <tr>
+      <td class="label" style="width: 250px;"><label for="<%= "config[#{config.key}]" %>" style='display: block;'><%= display_as %></label></td>
+      <td class="field"><%= text_field_tag "config[#{config.key}]", config.value, :class => 'textbox', :maxlength => 255 %></td>
+    </tr>
+<%
+	current_section = section
+end
+-%>
+	</table>
+  <p class="buttons">
+		<%= submit_tag 'Update' %>
+  </p>
+</form>

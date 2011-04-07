@@ -1,0 +1,31 @@
+e = []
+e << husband
+e << wife
+e << "Boy"
+e << "Does"
+e << "Fine"
+
+style %{
+  .fancy {color: orange; font-size: 2em; font-weight: bold;}
+  #fanciest {color: brown;}
+}
+
+@ouch = 'boogie'
+brother = "Lance"
+brother += " William Windemaker"
+
+
+div(:style=>'border: solid 1px red;') do
+  h1 e[0]
+  p "This is the first para"
+  p "This is the second para"
+  p @ouch
+  ul do
+    li.fancy doit1
+    li.fanciest! brother
+    e.each do |item|
+      li item
+    end
+  end
+end
+

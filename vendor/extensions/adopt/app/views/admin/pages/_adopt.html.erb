@@ -1,0 +1,17 @@
+<%
+include_javascript 'jquery-1.4.2'
+include_javascript 'jquery-no-conflicts'
+include_stylesheet 'admin/adopt'
+include_javascript 'admin/adopt'
+%>
+<style>
+  #content table.index .add-child, #content table.index .remove, #content table.index .reorder, #content table.index .adopt {
+    width: 20px !important;
+  }
+</style>
+<div id='adopt-instructions'>
+  <span>
+    Please select a new parent for the chosen page<br/>
+    or reselect the same page to abort.
+  </span>
+</div>

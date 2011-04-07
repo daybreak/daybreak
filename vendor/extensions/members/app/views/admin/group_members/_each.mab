@@ -1,0 +1,24 @@
+fields_for "group_member[#{index}]", group_member do |f|
+  class_names = "title" + (group_member.person.active? ? "" : " canceled")
+  row_id = "group_member_#{index}"
+  tr(:class => 'node level-0', :id => row_id) do
+    td.page do
+      span.w1 do
+        text link_to(image_tag("/images/admin/person.png", :align => 'center', :alt => 'page-icon', :class => 'icon') + " <span class='#{class_names}'>#{group_member.person.file_as}</span>", :controller => "/admin/persons", :action => 'edit', :id => group_member.person)
+        p {(group_member.person.person_type.name if group_member.person.person_type) || "{status not specified}"}
+      end
+    end
+    td.date { group_member.person.born_on.strftime("%b %d") if group_member.person.born_on }
+    td.contact { group_member.person.contact_info.join("<br/>")}
+    td.role do
+      text f.hidden_field 'id'
+      text f.select 'group_role_id', GroupRole.find(:all).collect {|r| [ r.name, r.id ] }, { :include_blank => true }
+    end
+    td.modify do
+      if @group
+        text link_to_remote image_tag("/images/admin/remove.png", :alt => "Remove"), :url => {:controller => '/admin/groups', :action => 'remove_member', :id => @group.id, :person_id => group_member.person.id}, :confirm => 'Are you sure?', :success => visual_effect(:fade, row_id), :failure => visual_effect(:highlight, row_id)
+      end
+    end
+  end
+end
+

@@ -1,0 +1,2 @@
+require 'members/extend/user'
+

@@ -1,0 +1,11 @@
+#header {background-color: #E08820;}
+#experience, #services, #separator .top, #separator .bottom, #showcase .edge
+	{background-color: #C2E1ED; }
+body {background-image: none;}
+#feel-summary h1{background-image: url(wec2.png);height: 70px;}
+#sound-summary h1{background-image: url(cue2.png);height: 70px; width: 400px;}
+#message-summary h1{background-image: url(rud2.png);height: 70px;}
+#event-summary h1{background-image: url(current-series2.png); height: 25px;}
+#experience h2 {background-image: url(experience2.png); height: 25px;}
+#services h2 {background-image: url(services2.png);height: 29px;}
+#here4you h2 {background-image: url(were-here-for-you2.png); height: 37px;}

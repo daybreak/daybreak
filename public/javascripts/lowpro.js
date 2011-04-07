@@ -1,0 +1,1 @@
+../../vendor/extensions/scheduler/public/javascripts/lowpro.js

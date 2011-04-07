@@ -1,0 +1,53 @@
+form(:action => url_for(:id => @event, :access_key => @event.access_key), :method => :post) do
+  authenticity_token
+  center do
+    h1 "Room Reservation and Set-up Request Form"
+    strong(:style=>'font-size: 1.5em'){ "FOR DAYBREAK MINISTRIES ONLY" }
+  end
+  readonly = !@event.pending?
+
+  fieldset do
+    legend "Status"
+    center{
+     b @event.event_status.to_s.titleize
+    }
+  end
+
+  fieldset do
+    legend "Coordinator's Information"
+    field :event, :contact_name, :label => 'Name', :readonly => readonly
+    field :event, :contact_phone, :label => 'Phone', :readonly => readonly
+    field :event, :contact_email, :label => 'Email', :readonly => readonly
+    field :event, :contact_full_address, :label => 'Full Address', :type => :textarea, :readonly => readonly
+    br
+  end
+
+  fieldset do
+    legend "Event Information"
+    field :event, :title, :label => 'Event Name', :readonly => readonly
+    field :event, :start_at, :label => 'Start at', :type => :date, :readonly => readonly
+    field :event, :end_at, :label => 'End at', :type => :date, :readonly => readonly
+    field :event, :setup_minutes, :label => 'Setup minutes', :hint => 'How many minutes will you require in advance for setup?', :readonly => readonly
+    field :event, :expected_attendance, :label => 'Number of people expected', :readonly => readonly
+    field :event, :comments, :label => 'Comments', :type => :textarea, :readonly => readonly, :hint => 'Any special requests or needs?'
+    field :event, :created_at, :label => 'Submitted on', :type => :date, :readonly => true unless event.new_record?
+  end
+
+  categorized_resources.each_pair do |resource_category, resources|
+    fieldset do
+      legend resource_category.titleize
+      ul do
+        resources.each do |resource|
+          li do
+            check_box_tag("event[resource_ids][]", resource.id, event.resources.include?(resource), :id => "event_resource_id_#{resource.id}", :readonly => readonly)
+            label(:for => "event_resource_id_#{resource.id}"){resource.name.titleize}
+            div.description{ resource.description } if resource.description
+          end
+        end
+      end
+    end
+  end
+
+  text submit_tag (event.new_record? ? "Make Request " : "Update Request") unless readonly
+end
+

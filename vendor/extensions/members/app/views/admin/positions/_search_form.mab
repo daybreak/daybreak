@@ -1,0 +1,16 @@
+form_remote :id       => "searchbox",
+            :url      => {:controller => 'admin/persons', :action => 'search', :position_id => @position.id},
+            :update   => 'search_list',
+            :loading  => "$('filtering').show();$('people_search_button').hide();",
+            :complete => "$('filtering').hide();$('people_search_button').show();" do
+  h3(:style=>'text-align: left;'){"People Search"}
+  div.field do
+    label "Last name starts with: "
+    text text_field_tag 'name_start'
+    submit_tag 'search', :id => 'people_search_button'
+  end
+  span.filtering! :style => 'display: none;' do
+    img :src => "/images/ajax/activity_bar.gif", :alt => 'Please wait a moment...'
+  end
+end
+

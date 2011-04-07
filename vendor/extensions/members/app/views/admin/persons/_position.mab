@@ -1,0 +1,13 @@
+row_id = "position_#{index}"
+button_id = "position_#{index}_button"
+tr :id => row_id do
+  fields_for "position[#{index}]", position do |f|
+    td.position_title do
+      text f.hidden_field :id
+      text f.collection_select :position_type_id, @position_types, :id, :title, :include_blank => !position.id
+    end
+    td.full_name { link_to_unless(position.new_record?, (position.subordinates.any? ? "#{position.subordinates.length} #{position.subordinates.length == 1 ? 'person' : 'people'}" : "no one"), :controller => "/admin/positions", :action => "edit", :id => position.id) }
+    td { link_to_remote(image_tag("/images/admin/remove.png", :id => button_id, :alt => "remove"), :url => {:controller => "/admin/positions", :action => "destroy", :id => position.id}, :confirm => "Are you sure?", :loading => "$('#{button_id}').hide();", :failure => "$('#{button_id}').show();", :success => visual_effect(:fade, row_id) ) if position.id }
+  end
+end
+

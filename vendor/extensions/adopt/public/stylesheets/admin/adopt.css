@@ -1,0 +1,44 @@
+#site_map td.adopt, #site-map[data-adopt-state=in-progress] td.adopt:hover {
+	background-image: url('/images/admin/adopt/family.png');
+	background-repeat: no-repeat;
+	background-position: 0 12px;
+	width: 16px;
+}
+#site_map[data-adopt-state=in-progress] td.adopt {
+	background-image: url('/images/admin/adopt/parent.png');
+}
+#site_map[data-adopt-state=in-progress] td.adopt[data-adopt-role=child] {
+	background-image: url('/images/admin/adopt/child.png');
+}
+#site_map td.adopt {
+	cursor: pointer;
+}
+body.adopting, body.adopting #site-map[data-adopt-state=in-progress] td.adopt {
+	cursor: progress;
+}
+#site_map[data-adopt-state=idle] tr.level-0 td.adopt {
+	background-image: none;
+}
+#site_map[data-adopt-state=idle] th.adopt span {
+	display: none;
+}
+#adopt-instructions {
+	position: fixed;	
+	bottom: 20px;	
+	left: 0;		
+	width: 100%;
+	text-align:center;
+}
+#adopt-instructions span {
+	padding: 10px;
+	margin: 0 auto;
+	width: auto;
+	display: inline-block;
+	font-weight: bold;
+	font-size: .9em;
+	color: white;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-image: url('/images/admin/adopt/dark-opacity.png');
+}

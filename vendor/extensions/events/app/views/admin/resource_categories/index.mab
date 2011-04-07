@@ -1,0 +1,6 @@
+include_stylesheet 'admin/event'
+h1 "Resource Categories"
+p "Kinds of resources that may be scheduled for use with Events."
+index_table ["Name"], resource_categories, [:name, :description]
+actions{|a,t| a.add new_record('Resource Category')}
+

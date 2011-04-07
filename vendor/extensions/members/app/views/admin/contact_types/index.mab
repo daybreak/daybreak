@@ -1,0 +1,14 @@
+h1 "Contact types"
+text link_to 'New', :action => 'new'
+text "  "
+text pagination_links @contact_type_pages
+table do
+  tr{th "Type name"; th ""}
+  for contact_type in @contact_types
+    tr do
+      td contact_type.name
+      td row_links(contact_type, :controller => 'contact_types')
+    end
+  end
+end
+

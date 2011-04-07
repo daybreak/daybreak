@@ -1,0 +1,12 @@
+h2 "Contact options"
+text link_to 'New', :controller => 'contact_options', :action => 'new', :person_id => params[:person_id]
+text "  "
+text pagination_links @contact_option_pages
+div.contact_options! do
+  tr {th "Type"; th "Info"}
+  @contact_options.each_with_index do |contact_option, index|
+   render :partial => 'contact_option', :locals => { :contact_option => contact_option, :index => index }
+  end
+end
+render :partial => 'add_contact_option_link', :locals => { :index => @contact_options.size }
+

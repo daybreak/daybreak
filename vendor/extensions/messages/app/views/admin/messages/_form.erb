@@ -1,0 +1,11 @@
+<%= markaby do
+  h1 do
+    text "Message"
+    text @message && @message.series ? " for &ldquo;#{@message.series.title}&rdquo;" : ""
+  end
+end %>
+<% enstyle_form_for :message, {:url => { :action => actions.first.to_s.downcase, :id => @message.id }, :multipart => true } do |f| %>
+<%= render :partial => 'fields', :locals => {:f => f} %>
+<%= controls(:message, actions) %>
+<% end %>
+

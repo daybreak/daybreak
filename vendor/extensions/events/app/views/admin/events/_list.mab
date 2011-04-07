@@ -1,0 +1,74 @@
+h1 "Events"
+p "A calendar of events."
+
+if @events.size > 0
+	div.filtering! do
+		fieldset.right do
+			legend 'Columns'
+			text label_for("Setup/Teardown", :for => 'setup_teardown', :on => :right){ |name| check_box_tag(name, "padded", false, :class => 'padded_filter', :onclick => "apply_filter(this, false)" ) }
+		end
+		fieldset.right do
+			legend 'Events'
+			text label_for("Starred Only", :for => 'starred', :on => :right){ |name| check_box_tag(name, "padded", false  ) }
+		end
+		fieldset.calendar_filter! do
+		  legend 'Calendars'
+		  render :partial => 'calendar_filtering_options'
+		end
+	end
+end
+
+@event_categories = EventCategory.find(:all)
+style do
+	text ".category {padding: .2em; }"
+	@event_categories.each{|ec| text(" .category." + ec.slug + " {background-color: " + ec.color + ";}\n") }
+end
+
+table.index do
+  thead do
+    tr {th "Event"; th.number "Registrants"; th ""; th.datetime.padded "Setup"; th.datetime "Start at"; th.datetime "End at"; th.datetime.padded "Teardown"; th.title "Calendar"; th "" }
+  end
+  tbody do
+    for @event in @events
+      class_names = ["title", @event.event_status].join(' ')
+      tr :class => "node level-0#{@event.happened? ? ' happened' : ''}#{@event.starred? ? ' starred' : ' unstarred'} #{@event.event_status} calendar_#{@event.event_category_id}" do
+
+        td.page do
+          span.w1 do
+            #text link_to(image_tag("/images/calendar_icons/calendar_#{@event.event_category_id}.png", :align => 'center', :alt => @event.event_category.name, :class => 'icon') + " <span class='#{class_names}'>#{@event.title}</span>", :action => 'edit', :id => @event.id)
+            text link_to(image_tag("/images/admin/event.png", :align => 'center', :alt => 'page-icon', :class => 'icon') + " <span class='#{class_names}'>#{@event.title}</span>", :action => 'edit', :id => @event.id)
+            p do
+            	if @event.access_key
+	            	text "Requested by "
+	            	a(:href=> "mailto:#{@event.contact_email}" ){ @event.contact_name}
+	            	br
+            	end
+            	text @event.description
+            end
+          end
+        end
+        td.number {(@event.num_registrants || 0) > 0 ? @event.num_registrants : ''}
+        td do
+        	if @event.recurrence_id.blank?
+        		text @event.start_at.strftime("%a") rescue ''
+        	else
+        		u @event.start_at.strftime("%a") rescue ''
+        	end
+        end
+        td.datetime.padded {@event.start_setup_at.formatted if @event.has_setup?}
+        td.datetime {@event.start_at.formatted}
+        td.datetime {@event.end_at.formatted}
+        td.datetime.padded {@event.end_teardown_at.formatted if @event.has_teardown?}
+        td.title do
+        	span (:class => "category #{@event.event_category.slug}") do
+  	        @event.event_category.name.titleize rescue 'None'
+	        end
+        end
+        td.star { img(:src=>'/images/admin/star.gif') if @event.starred? }
+      end
+    end
+    tr {} # prevents screen from disappearing when all filters are off and no rows are visible
+
+  end
+end
+

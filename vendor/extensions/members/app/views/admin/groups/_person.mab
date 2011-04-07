@@ -1,0 +1,4 @@
+text link_to(@person.full_name, :controller => 'persons', :action => 'edit', :id => @person)
+br
+text @person.created_at.formatted_markup
+

@@ -1,0 +1,29 @@
+h1 "SEARCH"
+table.index do
+  thead do
+    tr do
+      th "Name"
+      th "Contact"
+    end
+  end
+  tbody do
+    for @person in @people
+      class_names = "title" + (@person.active? ? "" : " canceled")
+      tr :class=>"node level-0" do
+        td.page do
+          span.w1 do
+            text link_to(image_tag("/images/admin/person.png", :align => 'center', :alt => 'page-icon', :class => 'icon') + " <span class='#{class_names}'>#{@person.file_as}</span>", :action => 'edit', :id => @person.id)
+            p {@person.person_type.name || "{status not specified}"}
+          end
+        end
+        td {@person.contact_info.join("<br/>")}
+        if @position
+          td {link_to_remote "Add", :update => 'subordinate_list', :url => {:controller => '/admin/positions', :action => 'add_subordinate', :id => params[:group_id], :person_id => @person}}
+        else
+          td {link_to_remote "Add", :update => 'member_list', :url => {:controller => '/admin/groups', :action => 'add_member', :id => params[:group_id], :person_id => @person}}
+        end
+      end
+    end
+  end
+end
+

@@ -1,0 +1,1 @@
+../../../vendor/extensions/page_attachments/public/javascripts/admin/page_attachments.js

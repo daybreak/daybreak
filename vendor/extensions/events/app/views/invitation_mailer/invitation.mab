@@ -1,0 +1,17 @@
+root_url = Radiant::Config['org.root_url']
+xhtml_transitional do
+  html do
+    head do
+      title "Invitation"
+      meta 'http-equiv'=>'Cache-Control', :content=>'no-cache'
+      meta 'http-equiv'=>'Expires', :content=>'-1'
+      base :href => "#{root_url}/"
+      link :type => 'text/css', :media => "screen", :rel => 'stylesheet', :href=>"#{root_url}/stylesheets/edgy.css"
+      link :type => 'text/css', :media => "screen", :rel => 'stylesheet', :href => "#{root_url}/stylesheets/invitation.css"
+    end
+    body.invitation_page! do
+      render :partial => 'invitations/body', :locals => {:event => @event, :personalized_message => @personalized_message}
+    end
+  end
+end
+

@@ -1,0 +1,13 @@
+for column in GroupMeeting.content_columns
+  p do
+    b do
+      column.human_name
+      text ":"
+    end
+    text " "
+    text @group_meeting.send(column.name)
+  end
+end
+text link_to 'Edit', :action => :edit, :id => @group_meeting.id
+text " | "
+text link_to 'Back', :action => :index

@@ -1,0 +1,2 @@
+page.insert_html :bottom, :contact_options, :partial => "contact_option", :locals => { :contact_option => @contact_option, :index => params[:index], :contact_types => @contact_types }
+page.visual_effect :highlight, "contact_option_#{params[:index]}"

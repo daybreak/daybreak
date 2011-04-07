@@ -1,0 +1,8 @@
+<% include_stylesheet 'form/form' %>
+<h1>Personalize Your Invitation</h1>
+<% enstyle_form_for :invitation, :url => { :action => :deliver, :id => @event.id }, :id => :invitation_entry do |f| %>
+<%= render :partial => 'fields', :locals => {:f => f} %>
+<% end %>
+<%= render :partial => 'body' %>
+<% #TODO: move onkeyup event to js %>
+

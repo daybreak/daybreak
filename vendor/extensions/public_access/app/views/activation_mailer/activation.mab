@@ -1,0 +1,8 @@
+p{"Your Daybreak account needs to be activated before you can use it."}
+p{"Your username: #{@user.login}"}
+p do
+	text "To activate, visit this link: "
+	link = "#{Radiant::Config['org.root_url']}/users/unlock/#{@user.id}/#{@user.locking_key}"
+	text link_to(link, link)
+end
+

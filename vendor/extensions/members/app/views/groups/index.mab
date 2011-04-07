@@ -1,0 +1,7 @@
+h1 "Small Groups"
+p {"You're welcome to browse our small groups to find the one that's right for you.  Please feel free to call the leader."}
+toggles :off => 'Show filtering options', :on => 'Hide filtering options' do
+  render :partial => "filter_form"
+end
+div.groups! {render :partial => 'groups'}
+

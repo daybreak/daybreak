@@ -1,0 +1,9 @@
+unless @user.new_record?
+  p{"Please check the email account you used to register and follow the instructions to finish the registration process.  Thanks for registering!"}
+else
+  if logged_in?
+    p{"You are already registered as &ldquo;#{current_user.login}&rdquo;."}
+  else
+		render :partial => 'form', :locals => {:actions => [:register]}
+  end
+end

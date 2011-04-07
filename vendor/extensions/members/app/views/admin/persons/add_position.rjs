@@ -1,0 +1,2 @@
+page.insert_html :bottom, :positions, :partial => "position", :locals => { :position => @position, :index => params[:index], :position_types => @position_types }
+page.visual_effect :highlight, "position_#{params[:index]}"

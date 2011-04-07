@@ -1,0 +1,7 @@
+<% if element.is_a?(Facets::Field) %>
+<%= render :partial => '/admin/pages/field', :locals => {:field => element} %>
+<% end %>
+<% if element.is_a?(Facets::Grouping) %>
+<%= render :partial => '/admin/pages/grouping', :locals => {:grouping => element} %>
+<% end %>
+

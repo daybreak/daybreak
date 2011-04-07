@@ -1,0 +1,13 @@
+#experience, #services, #separator .top, #separator .bottom, #showcase .edge
+	{background-color: #B28E00;}
+#experience a .bullets{color: black;}
+
+#experience h2 {background-image: url(experience-w.png); height: 25px;}
+#services h2 {background-image: url(services-w.png);height: 25px;}
+
+#showcase img#framed {display: block; margin-top: -30px;}
+#showcase img#unframed {display: none;}
+#event-summary h1{background-image: url(current-series8.png); height: 40px;}
+#experience h2 {background-image: url(experience8.png); height: 40px;}
+#services h2 {background-image: url(services8.png);height: 40px;}
+#here4you h2 {background-image: url(were-here-for-you8.png); height: 40px;}

@@ -1,0 +1,11 @@
+@person = person
+table.supervisors! do
+  tr {th.position_title "Title"; th.full_name "Supervisor"}
+  person.supervisors.each do |position|
+    tr do
+      td.position_title { position.title }
+      td.full_name {link_to(position.person.full_name, :controller => "persons", :action => "edit", :id => position.person.id) }
+    end
+  end
+end
+

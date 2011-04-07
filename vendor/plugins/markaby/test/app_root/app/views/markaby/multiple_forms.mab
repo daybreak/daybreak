@@ -1,0 +1,7 @@
+form_tag '/monkeys', :id => 'monkeys' do
+  div { submit_tag 'Save' }
+end
+
+form_tag '/bananas', :id => 'bananas' do
+  div { submit_tag 'Save' }
+end

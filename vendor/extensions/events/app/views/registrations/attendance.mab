@@ -1,0 +1,10 @@
+h1 "Attendance"
+h2 @event.title
+p{event.start_at.strftime('%B %e') + ", " + time_period(event.start_at, event.end_at)}
+ol do
+	@registrations.each do |registration|
+		li{(@event.confidential_attendance? ? "[Name Confidential]" : registration.contact_name.titleize) + (registration.registrants > 1 ? " x" + registration.registrants.to_s : "")}
+	end
+end
+text link_to(@recurrence.recurrence_category.name.pluralize, :controller => '/recurrences', :action => 'index', :slug => @recurrence.recurrence_category.slug)
+

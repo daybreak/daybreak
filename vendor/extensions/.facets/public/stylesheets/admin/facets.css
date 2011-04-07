@@ -1,0 +1,72 @@
+div.facets {
+  padding: 0;
+  margin: 1em 0 0;
+}
+div.facets p > * {
+  display: block;
+  padding: 0;
+  width: auto;
+}
+div.facets p {
+  margin: 0 0 .5em 0;
+}
+div.facets p textarea {
+  width: 100%;
+}
+div.facets fieldset {
+  border: solid 1px tan;
+  display: block;
+  margin: 0 0 .5em;
+  padding: .25em 1em;
+  background-color: #EAE3C5;
+}
+div.facets fieldset > legend {
+  margin: 0;
+  padding: 0;
+  display: block;
+/*  margin-left: inherit;
+  display: inline;*/
+}
+div.facets fieldset legend {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+div.facets fieldset.open legend, div.facets fieldset.closed legend {
+  background-position: 4px 4px;
+  background-repeat: no-repeat;
+  padding-left: 18px;
+}
+div.facets fieldset.closed legend {
+  background-image: url(/images/admin/plus.png);
+}
+div.facets fieldset.open legend {
+  background-image: url(/images/admin/minus.png);
+}
+div.error {
+  color: red;
+  font-size: .8em;
+}
+div.description {
+  color: dimgray;
+  font-size: .85em;
+  font-style: italic;
+}
+p.datetime input {
+  display: inline-block;
+  width: 10em;
+}
+p.stacked {
+  display: inline-block;
+  width: auto;
+  vertical-align: top;
+}
+p.stacked + p.stacked {
+  margin-left: 1em;
+}
+p.datetime img.calendar_date_select_popup_icon {
+  display: inline-block !important;
+}
+p.required label:after {
+  content: "*";
+}
+

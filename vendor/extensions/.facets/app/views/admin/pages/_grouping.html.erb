@@ -1,0 +1,5 @@
+<fieldset class='<%= grouping.descriptors.join(' ') %>'>
+  <legend><%= grouping.group.label %></legend>
+  <%= render :partial => '/admin/pages/element', :collection => grouping.elements %>
+</fieldset>
+

@@ -1,0 +1,9 @@
+radiant_configuration: 'Radiant Configuration'
+
+# Default configuration
+admin: 'Admin'
+subtitle: 'Subtitle'
+title: 'Title'
+defaults: 'Defaults'
+page_parts: 'Page Parts'
+page_status: 'Page Status'

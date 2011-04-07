@@ -1,0 +1,12 @@
+#experience, #services, #separator .top, #separator .bottom, #showcase .edge
+	{background-color: #DACD98;}
+#header {background-color: #FFCC00;}
+#experience a:hover .bullets{color: #FFEFB2;}
+#experience a .bullets{color: black;}
+
+#event-summary h1{background-image: url(current-series6.png); height: 35px;}
+#experience h2 {background-image: url(experience6.png); height: 35px;}
+#services h2 {background-image: url(services6.png);height: 35px;}
+#here4you h2 {background-image: url(were-here-for-you6.png); height: 35px;}
+
+

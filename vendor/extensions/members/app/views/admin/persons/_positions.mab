@@ -1,0 +1,8 @@
+table.positions! do
+  tr {th "Title"; th "Supervises"}
+  @person.positions.each_with_index do |position, index|
+    render :partial => '/admin/persons/position', :locals => { :position => position, :index => index }
+  end
+end
+render :partial => '/admin/persons/add_position_link', :locals => { :index => @person.positions.size }
+

@@ -1,0 +1,28 @@
+h1 "Recurrences"
+p "Recurrences are happenings that we repeatedly offer, such as service projects, classes/seminars, and ministry functions."
+table.index do
+  thead do
+    tr{th "Recurrence"; th "Last at"; th "Next at"; th "Category"; th "Sort order"}
+  end
+  tbody do
+    for @recurrence in @recurrences
+      class_names = "title" + (@recurrence.discontinued? ? " discontinued" : "")
+      #row(link_to(image_tag('/images/admin/recurrence.png', :align => 'center', :alt => 'Recurrence', :class => 'icon') + " <span class='#{class_names}'>#{@recurrence.name}</span>", :action => :edit, :id => @recurrence.id), @recurrence.description) do
+      #TODO: this would make a good partial!?
+      tr :class => "node level-0 children-visible" do
+        td.page do
+          span.w1 do
+            text link_to(image_tag('/images/admin/recurrence.png', :align => 'center', :alt => 'Recurrence', :class => 'icon') + " <span class='#{class_names}'>#{@recurrence.name}</span>", :action => :edit, :id => @recurrence.id)
+            p.description{@recurrence.description}
+          end
+        end
+        td.datetime{link_to(@recurrence.last_at.formatted, :controller => '/admin/events', :action => :edit, :id => @recurrence.last_event.id) if @recurrence.last_at}
+        td.datetime{link_to(@recurrence.next_at.formatted, :controller => '/admin/events', :action => :edit, :id => @recurrence.next_event.id) if @recurrence.next_at}
+        td{@recurrence.recurrence_category.name rescue nil}
+        td{@recurrence.sort_order}
+      end
+    end
+  end
+end
+actions{|a,t|a.add new_record('Recurrence')}
+

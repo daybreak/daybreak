@@ -1,0 +1,1 @@
+../../../vendor/extensions/adopt/public/javascripts/admin/adopt.js

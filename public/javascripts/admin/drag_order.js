@@ -1,0 +1,1 @@
+../../../vendor/extensions/drag_order/public/javascripts/admin/drag_order.js

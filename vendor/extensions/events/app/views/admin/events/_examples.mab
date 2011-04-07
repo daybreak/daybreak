@@ -1,0 +1,26 @@
+small do
+  b "Subdividing larger events:"
+  text " Fall campaign service projects are large enough, for example, that it can be useful to subdivide the event by group, location or subactivity.  Simply create several events sharing a common name followed by a colon and some differentiating fact or description.  This can help a visitor more easily identify the particular mini-event that interests him."
+  ul do
+    li do 
+      text "Example #1: "
+      b "Clean Up Day: Church Building"
+      text " and "
+      b "Clean Up Day: Church Grounds"
+    end
+    li do 
+      text "Example #2: "
+      b "Food Drive: Mechanicsburg Karns"
+      text ", "
+      b "Food Drive: Harrisburg Karns"
+      text " and "
+      b "Food Drive: Dillsburg Karns"
+    end
+    li do 
+      text "Example #3: "
+      b "Mission Interest Meeting: Peru"
+      text " and "
+      b "Mission Interest Meeting: New Orleans"
+    end
+  end
+end    

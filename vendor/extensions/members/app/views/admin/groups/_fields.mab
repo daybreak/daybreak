@@ -1,0 +1,67 @@
+div.page! do
+  authenticity_token
+  div.form_area do
+    entitled :group, :name, :maxlength => 50
+    tab_control do
+      tab_page :details do
+        meta_table do
+          meta_row :group, :active, :type => :checkbox
+          meta_row :group, :description, :type => :textarea
+          meta_row :group, :photo, :type => :imagebox
+          meta_row :group, :group_type_id, :type => :dropdown, :choices => GroupType.find(:all).collect {|t| [ t.name, t.id ] }, :include_blank => true
+          meta_row :group, :max_size, :required => true
+          meta_row :group, :min_age, :size => 2 do
+            inner_field :group, :max_age, :size => 2
+          end
+          meta_row('Coach') do
+            if group.coach
+              text link_to(group.coach.full_name, :controller => "persons", :action => "edit", :id => group.coach)
+            else
+              em 'None assigned'
+            end
+          end
+        end
+      end
+
+      tab_page :members do
+        div.member_list! do
+          component :controller => '/admin/group_members', :action => 'index', :params => { :group_id => group.id }
+          #text render('/admin/group_members/index')          
+          #text render(:partial => "members", :locals => {:group => group})
+        end
+        div.search_list! do
+          small { "Use the " + b("People Search") + " to lookup/add new members" }
+        end
+      end unless group.new_record?
+
+      tab_page :meetings do
+        meta_table do
+          meta_row :group, :meeting_frequency, :type => :dropdown, :label => "Frequency", :choices => to_dropdown_list(Group::MEETING_FREQUENCIES), :include_blank => true
+          meta_row :group, :meeting_day, :type => :dropdown, :label => "Day of Week", :choices => to_dropdown_list(Date::DAYNAMES), :include_blank => true
+          meta_row :group, :meeting_time_of_day, :label => "Time of Day", :size => 10
+          meta_row :group, :meeting_place, :label => "Place Name"
+          meta_row :group, :address, :type => :textarea
+          meta_row :group, :city do
+            inner_field :group, :state, :size => 2
+            inner_field :group, :zip, :size => 5
+          end
+          meta_row :group, :provides_childcare, :type => :checkbox
+          meta_row :group, :study_topic, :label => 'Topic'
+          meta_row :group, :study_starts_on, :type => :date do
+            inner_field :group, :study_ends_on, :type => :date, :label => 'Ends on'
+          end
+        end
+      end unless group.new_record?
+
+      tab_page :meeting_history do
+        #text render("/admin/group_meetings/index")
+        #text render(:partial => "meetings", :locals => {:group => group})
+        component :controller => "admin/group_meetings", :action => 'index', :params => { :group_id => group.id }
+      end unless group.new_record?
+
+    end # tab_control
+    br
+    updated_stamp(group)
+  end # form_area
+end #page
+

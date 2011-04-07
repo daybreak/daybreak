@@ -1,0 +1,36 @@
+root_url = Radiant::Config['org.root_url']
+require 'file_column_helper'
+style do %[
+	#invitation {background-color: #{@event.invitation_color} !important;}
+]
+end
+
+div.invitation! (:class => @event.title.downcase.delete(' ')) do
+	src = url_for_file_column('event', 'invitation_image')
+	img.photo :src => src
+	div.details! do
+		div.announce! do
+			p.invitation{"You're invited to our #{@event.title}."}
+			p.when do
+				span.day{@event.start_at.strftime('%B %e')}
+				br
+				span.time{format_range(@event.start_at, @event.end_at, :use_date => false)}
+			end
+			p.personalized_message!{@personalized_message}
+		end
+	end
+	div.location do
+		img :src=>"/images/logos/daybreak-mono.png", :alt=>"Daybreak Church"
+		br
+		text "321 Gettysburg Pike"
+		br
+		text "Mechanicsburg, PA 17055"
+		br
+		text "(717) 791-1200"
+		br
+		a(:href=>'http://maps.google.com/maps?q=321+Gettysburg+Pike,+Mechanicsburg,+PA,+17055&spn=0.028533,0.057811&hl=en'){"get driving directions"}
+		br
+		a(:href=>root_url){root_url}
+	end
+end
+

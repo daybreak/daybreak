@@ -1,0 +1,9 @@
+<% if @page.class.respond_to?(:facets) %>
+<% elements = @page.class.facets.grouped(:section => section) %>
+  <% unless elements.empty? %>
+  <div class='facets'>
+    <%= render :partial => '/admin/pages/element', :collection => elements %>
+  </div>
+  <% end %>
+<% end %>
+

@@ -1,0 +1,1 @@
+../../../vendor/extensions/bookmarking/public/javascripts/admin/bookmarking.js

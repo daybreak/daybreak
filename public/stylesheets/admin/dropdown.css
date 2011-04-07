@@ -1,0 +1,22 @@
+.dropdown_wrapper {
+  border: 1px solid #b3b3b3;
+  border-top: 1px solid #c3c3c3; }
+
+ul.menu {
+  background: white;
+  font-size: 80%;
+  padding: 5px 20px; }
+  ul.menu li {
+    margin: 0 -20px; }
+    ul.menu li.separator {
+      margin: 5px -18px;
+      border-top: 1px solid #e5e5e5; }
+  ul.menu a {
+    color: black;
+    display: block;
+    padding: 6px 20px;
+    text-decoration: none;
+    border-top: 1px solid white; }
+    ul.menu a:hover {
+      background: #e0f0ff url(../../images/admin/menu_highlight.png) top center repeat-x;
+      border-top: 1px solid #d5f0ff; }

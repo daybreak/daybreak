@@ -1,0 +1,16 @@
+div.page! do
+  authenticity_token
+  div.form_area do
+    entitled :message, :title
+    field :message, :description , :type => :textarea
+    field :message, :delivered_on, :type => :date
+    field :message, :delivered_by
+    field :message, :outline     , :type => :file, :after => (link_to_file_column('message', 'outline')    if message.outline)   , :label => 'GP Outline'
+    field :message, :audio       , :type => :file, :after => (link_to_file_column('message', 'audio'  )    if message.audio)     , :label => 'GP Audio'
+    field :message, :series_id   , :type => :hidden, :value => (message.series.id rescue nil)
+    field :message, :cp_outline  , :type => :file, :after => (link_to_file_column('message', 'cp_outline') if message.cp_outline), :label => 'CP Outline'
+    field :message, :cp_audio    , :type => :file, :after => (link_to_file_column('message', 'cp_audio'  ) if message.cp_audio)  , :label => 'CP Audio'
+
+    updated_stamp message
+  end
+end

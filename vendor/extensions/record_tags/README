@@ -1,0 +1,140 @@
+RecordTags (version 0.5.1)
+==========================
+RecordTags extends Radiant 0.6+ with tags for displaying database records on ActiveRecord models WITHOUT requiring that a custom tag set be written for each custom model.  I have used RecordTags to render custom models for back-end interfaces I have implemented.
+
+It is important to note that your Radiant instance MUST define the models you plan on accessing.  The following examples use the already-present User model.
+
+Sample usage for displaying a result set formatted as a table:
+
+<r:records model="User">
+
+	<r:if_returned>
+		<table>
+			<tr>
+				<th>name</th>
+				<th>login</th>
+				<th>updated at</th>
+				<th>notes</th>
+			</tr>
+		<r:each>
+			<tr>
+				<td><r:value for="name" /></td>
+				<td><r:value for="login" /></td>
+				<td><r:value for="updated_at" /></td>
+				<td><r:value for="notes" /></td>
+			</tr>
+		</r:each>
+		</table>
+		<p><r:count /> users returned.</p>
+	</r:if_returned>
+
+	<r:unless_returned>
+		<p>No users have been entered.</p>
+	</r:unless_returned>
+
+</r:records>
+
+Sample usage for displaying a single record:
+
+<r:record model="User" id="1">
+	<p><label>Name:</label> <r:value for="name" /></p>
+	<r:if_value for="notes"><p><label>Notes:</label> <r:value /></p></r:if_value>
+	<r:unless_value for="notes"><p>There are no notes on this user.</p></r:unless_value>
+</r:record>
+
+
+TAG REFERENCE
+=============
+
+records
+-------
+Selects a result set of models.
+
+Attributes:
+
+ *model (required)
+ *id
+ *conditions
+ *order
+ *offset
+ *limit
+
+These attributes are passed directly to the ActiveRecord.find method.  The "conditions" attribute does not accept '?' parameters.  You will have to pass the actual values.
+
+For example:
+
+<r:records model="User" conditions="name = 'Administrator'">
+<r:records model="User" conditions="name = ?"> ... this format is not yet supported.
+
+if_returned
+-----------
+This tag contains the tags/content that will be rendered when a result set is found.
+
+unless_returned
+---------------
+This tag contains the content that will be rendered when a result set is NOT found.
+
+count
+-----
+This empty tag returns the count of records returned.
+
+each
+----
+This tag selects each record in turn for individual rendering.  It will contain the 'value', 'if_value', 'unless_value' tags.
+
+value
+-----
+This empty tag displays the value of the field named by the "for" attribute.
+
+<r:value for="name" />
+
+Attributes:
+
+ *for (optional if already passed in either the outer if_value or unless_value tags, otherwise required)
+
+if_value
+--------
+This conditional tag renders its contents only if the named value is present (that is, it is NOT empty space or nil).  This is useful for conditionally displaying matching labels, line breaks, paragraphs, etc.:
+
+<r:if_value for="born_on"><p><label>Birthday:</label> <r:value/></p></r:if_value>
+
+Attributes:
+
+ *for (required)
+
+unless_value
+------------
+This conditional tag is the reciprocal of the above, rendering content when the named value is blank.
+
+Attributes:
+
+ *for (required)
+
+record
+------
+Like the 'records' tag however only the first matching record is returned.  I anticipate this tag may make greater use of the 'id' attribute for the direct selection of a specific record.
+
+Within the record tag are the 'if_value', 'unless_value', and 'value' tags, just as used by 'records'.
+
+
+Warning
+=======
+I released this extension early to meet the demand for this sort of functionality.  It is not as robust as I had planned on making it, nor is it in its final form.  Tag names and implementations are subject to change.
+
+The most needed feature at this point is the custom formatting of values.  That is, it would be useful to be able to specify various date formats, currency formats, etc.
+
+
+Acknowledgements
+================
+Thanks to John Long for creating the incredibly useful Radius which, in itself, makes Radiant an attractive backbone for a website.
+Thanks to Sean Cribbs for his Radius tutorials.
+
+
+Feedback
+========
+My Ruby is a little lacking.  If you spot inefficiencies and make any improvements, I'd be glad to integrate.
+
+Please feel free to send me any questions, suggestions, bug reports, or enhancements.
+
+Mario T. Lanza
+mlanza [AT] comcast [DOT] net

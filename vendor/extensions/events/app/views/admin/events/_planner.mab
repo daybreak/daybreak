@@ -1,0 +1,164 @@
+require 'date'
+
+#TODO: access helpers from Markaby Admin views?  Doesn't seem to work.
+
+#module EventHelper
+  def to_date(time)
+    Date.parse(time.strftime('%Y/%m/%d'))
+  end
+
+  def to_when(event, dayname = true)
+    (dayname ? (event.start_at.strftime('%A') + ', ' + abbr_date(event.start_at) + ' ') : '') + event.start_at.strftime('%I:%M %p') + ' - ' + event.end_at.strftime('%I:%M %p')
+  end
+
+  def this_week(date)
+    dt = to_date(date)
+    while dt.wday != 1
+      dt -= 1
+    end
+    starts = dt
+    ends = dt + 5
+    [starts, ends]
+  end
+
+  def abbr_date(date)
+    to_date(date).to_s.split('-')[1..2].join('/')
+  end
+
+  def week_key(date)
+    wstarts, wends = this_week(date)
+    "#{wstarts.to_s},#{wends.to_s};#{this_sunday(date).to_s}"
+  end
+
+  def this_sunday(date)
+    this_week(date).last + 1
+  end
+#end
+
+weeks = {}
+alt = true
+
+style %[
+  table {border-collapse: collapse;}
+  table th {text-align: left;}
+  table td {border: solid 1px lightgray; font-size: .8em; vertical-align: top; padding: 0;}
+table td span.when { font-size: .9em; color: brown;}
+  span.trimester {font-size: 1.5em; font-weight: bold;}
+  table td.trimester {background-color: #EEE; text-align: center; width: 3em;}
+  table td.alt.trimester {background-color: #CCC;}
+  table th.series, table td.series {width: 12em;}
+  table th.events, table td.events {width: 32em;}
+table th.when, table td.when {width: 3em;}
+  table td p {margin: 0 0 .4em;}
+]
+
+starts = to_date(@events.first.start_at)
+ends = to_date(@events.last.end_at)
+dt = starts
+while dt <= ends
+  weeks[week_key(dt)] = []
+  dt += 1
+end
+
+@events.each do |event|
+  weeks[week_key(event.start_at)] << event
+end
+
+weeks.each_key do |key|
+  weekdays = weeks[key].reject {|event| to_date(event.start_at).wday == 0 }
+  sunday = weeks[key].select {|event| to_date(event.start_at).wday == 0 }
+  message = Message.find(:first, :conditions => ["delivered_on = ?", Date.parse(key.split(';').last)])
+  rowspan = nil # calculated later
+  weeks[key] = [weekdays, sunday, message, rowspan, rowspan]
+end
+
+weeks = weeks.sort # will convert to array
+
+rowspan = 0
+(weeks.length-1).downto(0) do |i|
+  rowspan += 1
+  this_series_id = weeks[i][1][2].series.id rescue nil
+  prev_series_id = weeks[i-1][1][2].series.id rescue nil
+  if i == 0 or this_series_id != prev_series_id
+    weeks[i][1][3] = rowspan
+    rowspan = 0
+  end
+end
+
+def to_trimester(date)
+  return 2 if [1,2,3,4].include? (date.month)
+  return 3 if [5,6,7,8].include? (date.month)
+  return 1 if [9,10,11,12].include? (date.month)
+end
+
+rowspan = 0
+(weeks.length-1).downto(0) do |i|
+  rowspan += 1
+  this_trimester = to_trimester(Date.parse(weeks[i][0].split(',').first))
+  prev_trimester = to_trimester(Date.parse(weeks[i-1][0].split(',').first))
+  if i == 0 or this_trimester != prev_trimester
+    weeks[i][1][4] = rowspan
+    rowspan = 0
+  end
+end
+
+h1 "Event Planner"
+table do
+th.when ""; th.events "Monday-Saturday"; th.when ""; th.events "Sunday"; th.series "Series"; th "Tri"
+  weeks.each do |kvp|
+    key, week = kvp
+    weekdays, sunday, message, series_rowspan, trimester_rowspan = week
+    dates = key.split(';')
+    sunday_is_on = Date.parse(dates.last)
+    weekspan = dates.first.split(',')
+    week_starts_on = Date.parse(weekspan.first)
+    week_ends_on = Date.parse(weekspan.last)
+    trimester = to_trimester(week_starts_on)
+
+    tr do
+    td.when do
+      text abbr_date(week_starts_on) + '-'
+      br
+      text abbr_date(week_ends_on)
+    end
+    td.events do
+      weekdays.each do |event|
+        p do
+          text event.title
+          br
+        span.when {to_when(event)}
+        end
+      end
+    end
+  td.when { abbr_date(sunday_is_on) }
+    td.events do
+      sunday.each do |event|
+        p do
+          text event.title
+          br
+        span.when {to_when(event, false)}
+        end
+      end
+    end
+    if series_rowspan
+      td(:rowspan=>series_rowspan, :class=>'series') do
+        if message
+          text message.series.title
+        else
+          text "[No Message]"
+        end
+      end
+    end
+    if trimester_rowspan
+      hsh = {}
+      hsh[:rowspan]=trimester_rowspan
+      hsh[:class] = alt ? 'alt trimester' : 'trimester'
+      alt = !alt
+      td(hsh) do
+        span.trimester{ week_ends_on.year.to_s[2..3] + '-' + trimester.to_s }
+      end
+    end
+  end
+end
+end
+

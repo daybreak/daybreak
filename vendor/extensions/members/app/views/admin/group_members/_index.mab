@@ -1,0 +1,19 @@
+table.index do
+  thead do
+    tr do
+      th "Name"
+      th.date "Born on"
+      th.contact "Contact"
+      th.role "Role"
+      th.modify "Modify"
+    end
+  end
+  tbody do
+    if @group_members
+      @group_members.each_with_index do |group_member, index|
+        render :partial => '/admin/group_members/each', :locals => { :group => @group, :group_member => group_member, :index => index }
+      end
+    end
+  end
+end
+

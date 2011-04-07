@@ -1,0 +1,27 @@
+= Textile Editor
+
+Created by Jason Garber, September, 2008.  Based on the Textile Editor Helper plugin from WVU.
+
+Textile Editor places a bar above the textarea when Textile is the current input filter.
+
+== Installation
+
+./script/extension install textile_editor
+
+  -- OR --
+
+1) Unpack/checkout/export the extension into vendor/extensions of your 
+   project.
+
+2) Run the extension update task.
+
+  $ rake production radiant:extensions:textile_editor:update
+
+3) Restart your server
+
+== Compatible extensions:
+
+* enkoder_tags - for adding enkoded email addresses
+* page_attachments - for linking to attachments and including attached images
+
+Installing the RedCloth 4 gem is highly recommended since the RedCloth 3 bundled with Radiant is so buggy.  On Radiant 0.7 or higher, just gem install RedCloth.  For Radiant 0.6.9, you'll need the redcloth4 extension as well as the gem.

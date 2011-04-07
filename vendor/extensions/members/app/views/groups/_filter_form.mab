@@ -1,0 +1,11 @@
+h2 'Group Filter'
+p { small 'Checking at least one box in a category to filter on that category.  Check more boxes in a category to broaden your results.' }
+form_remote_tag(
+  :url      => {:action => 'filter'}, 
+  :update   => 'groups', 
+  :loading  => "$('filtering').show();$('apply_filter').disable();", 
+  :complete => "$('filtering').hide();$('apply_filter').enable();" + visual_effect(:highlight, :groups), 
+  :html     => {:id => 'filter_form' }
+  ) do
+  render :partial => "filter_form_options"
+end

@@ -1,0 +1,56 @@
+show_photo(@event, :standard, 'image') unless params[:component]
+div.dateblock do
+  div.month do
+    @event.start_at.strftime("%b")
+  end
+  text @event.start_at.strftime("%e")
+end
+h1(:style=>'margin-bottom: 0;'){ @event.title }
+#TODO: build a better format_range function.
+#format_range(start, end, single_day_template, multi_day_single_month_template, multi_day_multi_month_template, multi_day_multi_year_template)
+#format_range(start, end, template_set_array) e.g. format_range(start, end, :standard) ... new named sets can be registered.
+small format_range(@event.start_at, @event.end_at, :use_date => false)
+p do
+ text @event.render_part(:body)
+end
+p do
+	if @event.location
+		b{'Location: '}
+		if @event.location_url
+			#TODO: move to model as map_url
+			google_url = "http://maps.google.com/maps?q=#{@event.location_url.gsub('  ', ' ').gsub(' ', '+')}&hl=en"
+			a(:href=>google_url){@event.location}
+		else
+			text @event.location
+		end
+	end
+end
+p do
+	if @event.contact_name
+		b{'Contact: '}
+		if @event.contact_email
+			a(:href=>'mailto:' + @event.contact_email){@event.contact_name}
+		else
+			text @event.contact_name
+		end
+		text " &nbsp; "
+		text @event.contact_phone
+	end
+end
+
+cevents = @event.continuing_events
+
+unless cevents.length == 0
+  p do
+		b "This event continues on the following date" + (cevents.length > 1 ? 's' : '') + ":"
+		ul do
+			cevents.each do |cevent|
+				li do
+					text cevent.start_at.strftime('%a, %b %e ')
+					small format_range(cevent.start_at, cevent.end_at, :use_date => false)
+				end
+			end
+		end
+  end
+end
+

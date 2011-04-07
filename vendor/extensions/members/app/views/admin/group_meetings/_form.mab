@@ -1,0 +1,33 @@
+h1 do
+  text "Meeting for the &ldquo;"
+  text link_to group.name, :controller => 'groups', :action => 'edit', :id => group, :tab => "meetings"
+  text "&rdquo; group"
+end
+form(:action => action, :method => :post) do
+  div.page! do
+    authenticity_token
+    div.form_area do
+      entitled :group_meeting, :topic, :maxlength => 70
+      meta_table do
+        meta_row :group_meeting, :date, :type => :date  #TODO: move to title line
+        meta_row :group_meeting, :location
+        meta_row :group_meeting, :notes, :type => :textarea
+        meta_row :group_meeting, :prayer_requests, :type => :textarea
+        meta_row('Attendance') do
+          group.people.collect do |person|
+            text check_box_tag ("attendance[#{person.id}]", 1, (group_meeting.new_record? ? true : group_meeting.people.include?(person)))
+            text ' &nbsp; '
+            text person.full_name
+            text (person.leader? ? " * " : "")
+            br
+          end
+        end
+        meta_row :group_meeting, :guests, :class => :number
+      end
+      updated_stamp group_meeting
+    end
+  end
+
+  text controls :group_meeting, actions
+end
+

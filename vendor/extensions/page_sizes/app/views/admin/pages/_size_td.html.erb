@@ -1,0 +1,5 @@
+<%
+kbs = sprintf('%.2f kb',page.kilobytes)
+blank = page.kilobytes == 0
+%><td class='size'<% if blank %> style='opacity: .3'<% end %>><%= kbs %></td>
+

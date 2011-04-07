@@ -1,0 +1,4 @@
+render :partial => 'form', 
+       :locals => { :action  => url_for(:action => 'create', :group_id => params[:group_id]), 
+                    :actions => [:create]
+                    }

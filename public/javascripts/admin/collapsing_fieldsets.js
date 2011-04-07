@@ -1,0 +1,1 @@
+../../../vendor/extensions/facets/public/javascripts/admin/collapsing_fieldsets.js

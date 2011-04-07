@@ -1,0 +1,11 @@
+<% event = @event %>
+<% unless @event.new_record? %>
+<%= render_component :controller => 'admin/registrations', :action => 'index', :params => {:event_id => @event.id} %>
+<% end %>
+<% meta_table do %>
+  <%= meta_row :event, :confidential_attendance, :type => :checkbox, :label => 'Confidential Attendance?' %>
+  <%= meta_row :event, :registration_start_at, :type => :date, :label => 'Start date' %>
+  <%= meta_row :event, :registration_end_at, :type => :date, :label => 'Cutoff date' %>
+  <%= meta_row :event, :capacity, :maxlength => 5, :size => 4, :hint => "Leave blank if the capacity is unlimited." %>
+<% end %>
+

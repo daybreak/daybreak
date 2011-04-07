@@ -1,0 +1,2 @@
+text link_to_remote image_tag('/images/admin/add.png'), {:url => { :controller => 'persons', :action => 'add_contact_option', :index => index }}, {:id => :add_contact_option_link, :class => :add_button }
+

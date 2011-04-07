@@ -1,0 +1,12 @@
+#role_id {
+  float: right;
+  margin-top: 0;
+}
+#tab_control .tabs{
+  margin-bottom: -1px; /* TODO: this doesn't really belong here. */
+}
+#content form .set {
+  width: auto; 
+  clear: none;
+  display: inline-block !important;
+}

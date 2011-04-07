@@ -1,0 +1,15 @@
+include_stylesheet 'admin/event'
+h1 "Resource"
+form(:action => url_for(:action => actions.first, :id => resource.id), :method => :post) do
+  authenticity_token
+  div.form_area do
+    entitled :resource, :name, :maxlength => 50
+    field :resource, :resource_category_id, :type => :dropdown, :choices => ResourceCategory.find(:all).collect {|e| [ e.name, e.id ] }, :include_blank => false
+    field :resource, :description, :type => :textarea, :class => :simple
+    field :resource, :guidelines, :type => :textarea
+    br
+    updated_stamp resource
+  end
+  controls :resource, actions
+end
+

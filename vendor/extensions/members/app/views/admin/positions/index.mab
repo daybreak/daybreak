@@ -1,0 +1,45 @@
+h1 "Positions"
+p "Positions are roles whereby people supervise and help others help the church."
+
+text @subhead
+table :class => 'index people' do
+  thead do
+    tr {th "Name"; th "Born on"; th "Contact"; th "Modify"}
+  end
+  tbody do
+    for @position_type in @position_types
+      tr.grouping do
+        td :colspan => '100%' do
+          text @position_type.title.pluralize
+        end
+      end
+      unless @position_type.positions.any?
+        tr do
+          td :class => 'center', :colspan => '100%' do
+            em "Vacant"
+          end
+        end
+      end
+      for @position in @position_type.positions
+        @person = @position.person
+        class_names = "title" + (@person.active? ? "" : " canceled")
+        tr :class => 'node level-0' do
+          td.page do
+            span.w1 do
+              text link_to(image_tag("/images/admin/person.png", :align => 'center', :alt => 'page-icon', :class => 'icon') + " <span class='#{class_names}'>#{@person.file_as}</span>", :controller => '/admin/persons', :action => 'edit', :id => @person)
+              p do
+                text @position_type.title.capitalize
+                text " of "
+                text link_to_unless(@position.new_record?, (@position.subordinates.any? ? "#{@position.subordinates.length} #{@position.subordinates.length == 1 ? 'person' : 'people'}" : "no one"), :controller => "/admin/positions", :action => "edit", :id => @position.id)
+              end
+            end
+          end
+          td.date {@person.born_on.strftime("%b %d") if @person.born_on}
+          td.contact {@person.contact_info.join("<br/>")}
+          td {}
+        end
+      end
+    end
+  end
+end
+

@@ -1,0 +1,10 @@
+img.bookmark {
+  opacity: .1;
+}
+img.unbookmark {
+  opacity: 1;
+}
+body.bookmarking {
+	cursor: progress;
+}
+

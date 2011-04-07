@@ -1,0 +1,1 @@
+../../../vendor/extensions/page_origin/public/javascripts/admin/page_origin.js

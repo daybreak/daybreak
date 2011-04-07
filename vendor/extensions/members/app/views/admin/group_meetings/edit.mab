@@ -1,0 +1,2 @@
+render :partial => 'form', 
+       :locals => { :action => url_for(:action => :update, :id => @group_meeting), :actions => [:update, :delete] }

@@ -1,0 +1,24 @@
+= Configuration
+
+The configuration extensions allows you to configure Radiant through 
+the Radiant interface. There isn't a configuration interface
+available in the current Radiant version, which isn't much of a problem,
+because the configuration could easily be altered through the console.
+
+Unfortunately, some of my extensions allow my end-users to change some
+configurations. Therefore I created this configuration interface.
+
+= How to use
+
+Just checkout from SVN in the vendor/extensions folder of your Radiant 
+installation.
+
+When enabled, this extension will add 'Configuration' tab to your Radiant.
+This tab and the underlying page will only be visible for Administrators.
+The underlying page displays all configuration keys and their values. The
+values can easily be altered by the form.
+
+= Know issues
+
+- It is not possible to order the keys because of the 'key' column, 
+	which is a reserved keyword in MySQL databases.

@@ -1,0 +1,10 @@
+h1 "Contact type"
+text link_to('New', :action => 'new') if actions.first == :update
+form(:action => url_for(:action => actions.first, :id => @contact_type), :method => :post) do
+  authenticity_token
+  text error_messages_for 'contact_type'
+  field :contact_type, :name, :label => 'Type name'
+  text form_timestamps(@contact_type)
+  controls :contact_type, actions
+end
+

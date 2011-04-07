@@ -1,0 +1,35 @@
+h1 "Series"
+p "A series is a collection of related messages."
+table.index do
+  thead do
+    tr do
+      th.title "Title"
+      th.date "Started on"
+      th.date "Ended on"
+    end
+  end
+  tbody do
+    for @this_series in @series
+      tr :class => "node level-0 children-visible" do
+        td.page do
+          span.w1 do
+            text link_to(image_tag("/images/admin/series.png", :align => 'center', :alt => 'page-icon', :class => 'icon') + " <span class='title'>#{@this_series.title}</span>", :action => :edit, :id => @this_series)
+            p do
+              text link_to("#{@this_series.num_messages} Messages", :controller => 'messages', :action => :index, :series_id => @this_series.id)
+              text "  ["
+              text link_to("Add", :controller => 'messages', :action => :new, :series_id => @this_series)
+              text "]"
+            end
+          end
+        end
+        td.date { @this_series.started_on.formatted }
+        td.date { @this_series.ended_on.formatted }
+      end
+    end
+  end
+end
+actions do |a,t|
+  a.add new_record('Series')
+  t.paginate @series  
+end
+

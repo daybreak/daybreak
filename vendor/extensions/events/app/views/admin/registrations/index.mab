@@ -1,0 +1,30 @@
+h2 "Registrations" unless params[:suppress_title]
+table (:class => :index) do
+  thead { tr        { th "Registrant"        ; th.phone "Phone"; th.number "Adults"         ; th.number "Children"         ; th.number "Total"               ; th.datetime "As Of" } }
+  tfoot { tr.totals { td "Total Registrants" ; td.phone ""     ; td.number @event.num_adults; td.number @event.num_children; td.number.num_registrants! @event.num_registrants; td @event.describe_space } }
+  tbody do
+    @registrations.each do |registration|
+      tr :class=>"node level-0 children-visible" do
+        class_names = "title" + (registration.withdrawn? ? " withdrawn" : "")
+        td.page do
+          span.w1 do
+            text link_to(image_tag("/images/admin/page.png?1177620822", :align => 'center', :alt => 'page-icon', :class => 'icon') + " <span class='#{class_names}'>#{registration.contact_name}</span>", :controller => '/registrations', :action => 'edit', :id => registration.id)
+            p {link_to(registration.contact_email, "mailto:#{registration.contact_email}")}
+          end
+        end
+        td.phone  { registration.contact_phone }
+        td.number { registration.adults }
+        td.number { registration.children }
+        td.number { registration.registrants }
+        td.datetime { registration.modified_at.formatted }
+      end
+    end
+    tr {}
+  end
+end
+
+bar = OptionBar.new(' | ')
+bar.options << link_to('Create Registration', :controller => '/registrations', :action => :new, :page_id => params[:page_id])
+bar.options << link_to('Email Everyone', "mailto:#{@event.mailing_list.join(', ')}") if @event.mailing_list.any?
+text bar
+

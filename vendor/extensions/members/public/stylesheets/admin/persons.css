@@ -1,0 +1,30 @@
+.tab img.close {
+  display: none;
+}
+
+div#relationships-page fieldset {width: auto !important; clear: both !important; float: none !important; }
+th.position_title, td.position_title {width: 12em;}
+th.full_title, td.full_name {width: 12em;}
+table#supervisors th, table#positions th {text-align: left;}
+div.address {width: auto !important;}
+div.external_id {clear: left; }
+div.external_id input {width: 7em; margin-right: 1em;}
+p.title input#person_first_name, p.title input#person_last_name {}
+p.title span {float: left; width: 43%; margin-right: 1em;}
+p.title span + span + span {width: 9%;}
+
+body.reversed #content form fieldset {
+  background-color: transparent;
+  padding: .5em;
+  -moz-box-shadow: none;
+  border: solid 1px #BBB;
+}
+#tab_control {
+  float: left;
+  padding-top: 1em;
+  width: 100%;
+}
+
+#person_address {
+  height: 3em;
+}

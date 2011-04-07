@@ -1,0 +1,3 @@
+class_name = current_user.bookmark?(page) ? "unbookmark" : "bookmark"
+td{img(:src=>"/images/admin/bookmark.png", :class=>"#{class_name} page-#{page.id}")}
+

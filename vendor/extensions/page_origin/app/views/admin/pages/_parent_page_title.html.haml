@@ -1,0 +1,7 @@
+%h1#page_path
+  %span#root_path= full_base_url(request, @page)
+  - if @page.new_record?
+    = '...'
+  - else
+    %a#path_slug{:href=> @page.full_url, :target=> '_new', :style=>'text-decoration: none;'}= @page.slug
+

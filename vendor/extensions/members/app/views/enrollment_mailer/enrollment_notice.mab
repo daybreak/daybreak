@@ -1,0 +1,12 @@
+p {"RE: #{@group.name}"}
+p {"#{@person.full_name} has just joined your small group."}
+br
+br
+p do
+  text "Contact info: " 
+  br 
+  @person.contact_options.each do |co|
+    text co.contact_info
+    br
+  end
+end

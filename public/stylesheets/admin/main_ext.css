@@ -1,0 +1,21 @@
+#content table.fieldset th.label label.required {background-color: #EEE; padding: .2em; font-size: 2em; font-weight: bold !important; -moz-border-radius: 5px;}
+#content table.fieldset { margin-top: .5em; }
+#content table.fieldset tr:first-child,
+#content table.fieldset tr:first-child td.field,
+#content table.fieldset tr:first-child th.label {border-top: solid 1px white !important;}
+#content table.fieldset tr:last-child,
+#content table.fieldset tr:last-child > td.field,
+#content table.fieldset tr:last-child > th.label {border-bottom: solid 1px white !important; }
+#content table.fieldset tr > th.label { width: 13em; }
+#content table.fieldset tr > th.label label { float: right;}
+#content table.fieldset tr > th.label {border-color: #ddd !important; }
+#content table.fieldset tr > td.field { text-align: left !important; padding-left: .2em; }
+#content table.fieldset tr > td.field ul {list-style: none;	}
+#content table.fieldset tr td ul {float: left; padding: 0; margin: .5em; }
+#content table.fieldset tr td li {background-color: #EEE; margin: 0 .5em 0 0; padding: .3em; -moz-border-radius: 5px; float: left; }
+#tab-control {margin-top: .3em;}
+#content #tab-control + p {margin-top: 1em;}
+#content table.index td {min-height: 3em;}
+#content p + table.fieldset {margin-bottom: 1.5em;}
+p.invisible {color: transparent;}
+

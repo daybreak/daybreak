@@ -1,0 +1,28 @@
+#TODO: convert to use field tag
+h1 "Contact option"
+text link_to 'New', :action => 'new' if actions.first == :update
+form(:action => url_for(:action => actions.first, :id => @contact_option), :method => :post) do
+  authenticity_token
+  text error_messages_for 'contact_option' #TODO: couldn't this be built into markup helper?
+
+  text hidden_field 'contact_option', 'person_id'
+  p do
+    label "Contact"
+    br
+    text readonly_text @contact_option.person.full_name
+  end
+  p do
+    label(:for=>'contact_option_contact_type'){"Contact type"}
+    br
+    text collection_select(:contact_option, :contact_type_id, @contact_types, :id, :name)
+    text link_to('New', :controller => 'contact_types', :action => 'new')
+  end
+  p do
+    label(:for=>'contact_option_contact_info') {"Contact info"}
+    br
+    text text_field 'contact_option', 'contact_info'
+  end
+  form_timestamps(@contact_option)
+	text controls :contact_option, actions
+end
+

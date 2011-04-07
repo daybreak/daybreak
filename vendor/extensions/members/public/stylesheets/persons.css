@@ -1,0 +1,16 @@
+.search_options {width: 100%; }
+.search_options form.search {width: 98% !important; }
+form div.first_name.field input, form div.last_name.field input {width: 9em;}
+form div.address.field, form div.city.field, form div.born_on.field, form div.photo.field { clear: left; }
+form div.address.field textarea  { width: 19em; height: 4em; }
+form fieldset#contact_options_fs { clear:both; width: 32em; }
+form .contact_type select { width: 8em; }
+form .contact_info input[type='text'] { width: 12em; }
+fieldset.tight { float: left; margin-bottom: 1em; width: 20em; clear: left; }
+img.photo, img.dummy-photo { float: right; width: auto; clear: none; }
+table .member {text-align: center; width: 6em;}
+table .born_on {text-align: center; width: 15em; white-space: nowrap;}
+table .contact_info {width: 15em; white-space: nowrap;}
+table .address {width: 100%; white-space: nowrap;}
+p.msg {float: left; clear: both; margin-top: 1em;}
+

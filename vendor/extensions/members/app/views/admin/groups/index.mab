@@ -1,0 +1,30 @@
+h1 "Groups"
+p "People better connect and build deeper relationships through small groups."
+table.index do
+  thead do
+    tr {th "Name"; th "Type"; th "Contact"; th.total.number "Members"}
+  end
+  tfoot do
+    tr do
+      td(:colspan => '3'){}
+      td.total.number{total_members(@groups)}
+    end
+  end
+  tbody do
+    for @group in @groups
+      class_names = "title" + (@group.active? ? "" : " canceled")
+      tr(:class => 'node level-0') do
+        td.page do
+          span.w1 do
+            text link_to(image_tag("/images/admin/group.png", :align => 'center', :alt => 'Group', :class => 'icon') + " <span class='#{class_names}'>#{@group.name}</span>", :action => 'edit', :id => @group) 
+            p @group.summary
+          end
+        end
+        td {@group.group_type.name if @group.group_type}
+        td {@group.contact_info.join("<br/>")}
+        td.number {@group.group_members.count}
+      end
+    end
+  end
+end
+div.options {link_to(image_tag('/images/admin/new-group.png', :alt => 'New Group'), :action => 'new')}

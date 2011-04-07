@@ -1,0 +1,2 @@
+render :partial => 'form',
+       :locals  => {:actions => [:update, :delete, :index, link_to_view_on_site(@message)]}

@@ -1,0 +1,5 @@
+if @person
+  render :partial => 'form', :locals => {:actions => [:edit, :index]}
+else
+  p "Your record is not in our database."
+end

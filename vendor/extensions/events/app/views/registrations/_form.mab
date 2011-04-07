@@ -1,0 +1,47 @@
+actions.delete_if {|action| action == :about } unless @recurrence
+actions.map! do |action|
+  if action == :about
+    link_to('Registration dates', :controller => '/recurrences', :action => 'about', :id => @recurrence.id, :slug => @recurrence.recurrence_category.slug)
+  else
+    action
+  end
+end
+
+registration_hint = content_tag(:small){ "(Children must be #{@recurrence.minimum_age} or older for this event.)"} if @recurrence and @recurrence.minimum_age
+
+h1 "Registration"
+form(:action => url_for(:action => actions.first, :id => @registration.id), :method => :post, :enctype => "multipart/form-data") do
+  authenticity_token
+  div do
+    hidden_field_tag 'page_id', @event.id
+    component :controller => 'events', :action => 'show', :id => @registration.page, :params => {:component => true}
+    unless @registration.new_record?
+      p do
+        b{'Number of registrants: '}
+        text @registration.registrants
+      end
+    end
+
+    if @recurrence
+      section {@registration.new_record? ? @recurrence.pre_registration_message : @recurrence.confirmation_message }
+    end
+  end
+
+  fieldset.confirmation_number! do
+    legend 'Confirmation #'
+    p{@registration.id}
+  end unless @registration.new_record?
+  fieldset do
+    legend 'Number of Registrants'
+    field :registration, :adults
+    field :registration, :children, :hint => registration_hint
+  end
+  fieldset do
+    legend 'Contact'
+    field :registration, :contact_name, :label => 'Name'
+    field :registration, :contact_email, :label => 'Email'
+    field :registration, :contact_phone, :label => 'Phone No.'
+  end
+  controls :registration, actions
+end
+

@@ -1,0 +1,11 @@
+#include_stylesheet 'admin/event'
+style do
+%[
+  tr td {height: 3em; }
+]
+end
+h1 "Resource"
+p "Resources that may be scheduled for use with Events."
+index_table ["Name", "Category"], resources, [:name, :description, :category]
+actions{|a,t| a.add new_record('Resource')}
+

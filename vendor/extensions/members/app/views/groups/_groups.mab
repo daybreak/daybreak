@@ -1,0 +1,25 @@
+if @groups.any?
+  table do
+    thead do
+      show_size = capture{a.show_size!(:href=> '#', :onclick => "$('show_size').hide();hide_columns('table td.composition');show_columns('table td.size');$('show_composition').show()", :style=> 'display: none;'){ "Composition"}}
+      show_composition = capture{a.show_composition!(:href=>'#', :onclick => "$('show_composition').hide();hide_column('table td.size');show_columns('table td.composition');$('show_size').show()"){ "Size"}}
+      tr { th ""; th "Group"; th "Meetings"; th "Location"; th "Members"; th.size { show_size; show_composition }}
+    end
+    tbody do
+      for @group in @groups
+        tr do
+          group_heading = capture{h2{@group.name}}
+          td.photo { show_photo(@group) }
+          td.group { link_to(group_heading, :action => :show, :id => @group.id); small {@group.description} }
+          td.meetings.nowrap {@group.meetings.join("<br/>")}
+          td.location.nowrap {link_to_map(@group.location.join("<br/>"), @group.address, @group.city, @group.state, @group.zip)}
+          td.members.centered.nowrap {@group.members.join("<br/>")}
+          td.members.centered.nowrap.size {"#{@group.group_members.count} members"; br; small{"#{@group.spots_left} openings"}}
+          td.composition.nowrap(:style=>'display: none;') {@group.composition(true)}
+        end
+      end
+    end
+  end
+else
+  p "No groups matched your filter.  Please broaden your parameters."
+end

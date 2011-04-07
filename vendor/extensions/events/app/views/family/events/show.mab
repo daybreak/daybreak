@@ -1,0 +1,10 @@
+show_photo(@event, :standard, 'image')
+div.dateblock(:style => 'float: left; margin-top: 1em;') do
+  div.month do
+    @event.start_at.strftime("%b")
+  end
+  text @event.start_at.strftime("%e")
+end
+h1 @event.title
+small format_range(@event.start_at, @event.end_at, :use_date => false)
+p @event.description
